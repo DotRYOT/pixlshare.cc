@@ -1,0 +1,521 @@
+@import "../../scss/global";
+@import "../../scss/nav";
+
+body {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-align-content: stretch;
+  align-content: stretch;
+  -webkit-align-items: center;
+  align-items: center;
+
+  background-color: var(--primary-bg);
+  color: var(--text-color);
+}
+
+.InPageNav {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+  -webkit-align-content: stretch;
+  align-content: stretch;
+  -webkit-align-items: center;
+  align-items: center;
+
+  margin-top: 4rem;
+
+  width: 100%;
+  height: auto;
+  background-color: var(--primary-bg);
+
+  border-top: .1rem solid var(--border-color);
+  border-bottom: .1rem solid var(--border-color);
+
+  button {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+    -webkit-align-content: stretch;
+    align-content: stretch;
+    -webkit-align-items: center;
+    align-items: center;
+
+    border-left: .1rem solid var(--border-color);
+    border-right: .1rem solid var(--border-color);
+
+    background-color: var(--primary-bg);
+    color: var(--button-text-color);
+
+    margin: .5rem 0rem;
+
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--button-hover-color);
+    }
+
+    h3 {
+      margin-right: .5rem;
+    }
+
+    ion-icon {
+      margin-left: .5rem;
+      font-size: 2rem;
+    }
+  }
+}
+
+.AccountPageContent {
+  width: 100%;
+  margin-bottom: 5rem;
+
+  #settingsContainer {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-justify-content: flex-start;
+    justify-content: flex-start;
+    -webkit-align-content: stretch;
+    align-content: stretch;
+    -webkit-align-items: center;
+    align-items: center;
+
+    #settingsForm {
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-direction: column;
+      flex-direction: column;
+      -webkit-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+      -webkit-justify-content: flex-start;
+      justify-content: flex-start;
+      -webkit-align-content: stretch;
+      align-content: stretch;
+      -webkit-align-items: center;
+      align-items: center;
+
+      width: 100%;
+      margin-top: 1rem;
+      gap: 1rem;
+
+      .imageContainer {
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        -webkit-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-align-content: stretch;
+        align-content: stretch;
+        -webkit-align-items: flex-start;
+        align-items: flex-start;
+
+        gap: 1rem;
+
+        .imagePreview {
+          display: -webkit-flex;
+          display: flex;
+          -webkit-flex-direction: column;
+          flex-direction: column;
+          -webkit-flex-wrap: nowrap;
+          flex-wrap: nowrap;
+          -webkit-justify-content: flex-start;
+          justify-content: flex-start;
+          -webkit-align-content: stretch;
+          align-content: stretch;
+          -webkit-align-items: center;
+          align-items: center;
+
+          gap: 1rem;
+          width: 100%;
+          height: 100%;
+
+          label {
+            text-decoration: underline;
+          }
+
+          img {
+            object-fit: cover;
+            width: 10rem;
+            height: 10rem;
+          }
+
+          button {
+            background-color: transparent;
+            border-top: .1rem solid var(--border-color);
+            border-bottom: .1rem solid var(--border-color);
+            padding: 1rem 2rem;
+            cursor: pointer;
+
+            ion-icon {
+              font-size: 1.5rem;
+            }
+          }
+        }
+      }
+
+      input {
+        background-color: transparent;
+        border-top: .1rem solid var(--border-color);
+        border-bottom: .1rem solid var(--border-color);
+        padding: 1rem 2rem;
+        color: var(--text-color);
+
+        ion-icon {
+          font-size: 1.25rem;
+        }
+      }
+    }
+
+    #bioForm {
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-direction: column;
+      flex-direction: column;
+      -webkit-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+      -webkit-justify-content: flex-start;
+      justify-content: flex-start;
+      -webkit-align-content: stretch;
+      align-content: stretch;
+      -webkit-align-items: center;
+      align-items: center;
+
+      width: 100%;
+      gap: 1rem;
+      padding-top: 1rem;
+      margin-top: 1rem;
+      border-top: .1rem solid var(--border-color);
+
+      label {
+        text-decoration: underline;
+      }
+
+      textarea {
+        background-color: transparent;
+        border: .1rem solid var(--border-color);
+        border-radius: .25rem;
+        color: var(--text-color);
+        width: 90%;
+        height: 10rem;
+        padding: 1rem;
+
+        &::placeholder {
+          color: var(--text-color);
+        }
+      }
+
+      input {
+        background-color: transparent;
+        border-top: .1rem solid var(--border-color);
+        border-bottom: .1rem solid var(--border-color);
+        padding: 1rem 2rem;
+        color: var(--text-color);
+
+        ion-icon {
+          font-size: 1.25rem;
+        }
+      }
+    }
+  }
+
+  #accountSettings {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-justify-content: flex-start;
+    justify-content: flex-start;
+    -webkit-align-content: stretch;
+    align-content: stretch;
+    -webkit-align-items: center;
+    align-items: center;
+
+    .accountContainer {
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-direction: column;
+      flex-direction: column;
+      -webkit-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+      -webkit-justify-content: flex-start;
+      justify-content: flex-start;
+      -webkit-align-content: stretch;
+      align-content: stretch;
+      -webkit-align-items: center;
+      align-items: center;
+
+      width: 100%;
+      height: auto;
+
+      button {
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        -webkit-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-align-content: stretch;
+        align-content: stretch;
+        -webkit-align-items: center;
+        align-items: center;
+
+        width: 90%;
+        height: 4rem;
+
+        background-color: var(--primary-bg);
+        color: var(--text-color);
+        border-top: .1rem solid var(--border-color);
+        border-bottom: .1rem solid var(--border-color);
+        font-size: 1.25rem;
+
+        margin-top: .5rem;
+
+        cursor: pointer;
+
+        ion-icon {
+          font-size: 1.5rem;
+        }
+
+        p {
+          font-size: 1.5rem;
+          margin-left: .5rem;
+        }
+      }
+    }
+  }
+}
+
+#passwordChangeForm {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-content: stretch;
+  align-content: stretch;
+  -webkit-align-items: center;
+  align-items: center;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+
+  z-index: 1000;
+
+  button {
+    padding: .5rem;
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+
+    background-color: transparent;
+    color: var(--text-color);
+
+    cursor: pointer;
+
+    ion-icon {
+      font-size: 2rem;
+    }
+  }
+
+  form {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-content: stretch;
+    align-content: stretch;
+    -webkit-align-items: center;
+    align-items: center;
+
+    border-top: .1rem solid var(--border-color);
+    border-bottom: .1rem solid var(--border-color);
+
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+
+    padding: 1rem;
+
+    width: 50vw;
+
+    h2 {
+      margin-bottom: 1rem;
+    }
+
+    input {
+      padding: .25rem 1rem;
+      border-radius: .25rem;
+      border: .1rem solid var(--border-color);
+      background-color: var(--button-bg);
+      color: var(--button-text-color);
+      margin-bottom: .5rem;
+      width: 90%;
+      height: 2.5rem;
+
+      &:hover {
+        cursor: pointer;
+        border-color: var(--hover-border-color);
+      }
+
+      &::placeholder {
+        color: var(--text-color);
+      }
+    }
+
+    p {
+      margin-bottom: .5rem;
+
+      a {
+        text-decoration: underline;
+        color: var(--text-color);
+      }
+    }
+  }
+}
+
+#ageForm {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-content: stretch;
+  align-content: stretch;
+  -webkit-align-items: center;
+  align-items: center;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+
+  z-index: 1000;
+
+  button {
+    padding: .5rem;
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+
+    background-color: transparent;
+    color: var(--text-color);
+
+    cursor: pointer;
+
+    ion-icon {
+      font-size: 2rem;
+    }
+  }
+
+  form {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-content: stretch;
+    align-content: stretch;
+    -webkit-align-items: center;
+    align-items: center;
+
+    border-top: .1rem solid var(--border-color);
+    border-bottom: .1rem solid var(--border-color);
+
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+
+    padding: 1rem;
+    width: 50vw;
+
+    h2 {
+      margin-bottom: 1rem;
+    }
+
+    input {
+      padding: .25rem 1rem;
+      border-radius: .25rem;
+      border: .1rem solid var(--border-color);
+      background-color: var(--button-bg);
+      color: var(--button-text-color);
+      margin-bottom: .5rem;
+      width: 90%;
+      height: 2.5rem;
+
+      &:hover {
+        cursor: pointer;
+        border-color: var(--hover-border-color);
+      }
+
+      &::placeholder {
+        color: var(--text-color);
+      }
+    }
+
+    p {
+      margin-bottom: .5rem;
+
+      a {
+        text-decoration: underline;
+        color: var(--text-color);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .InPageNav {
+    width: 60%;
+  }
+
+  .AccountPageContent {
+    width: 60%;
+  }
+}

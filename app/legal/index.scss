@@ -1,0 +1,35 @@
+@import "../scss/global";
+@import "../scss/nav";
+
+h1 {
+  padding: 1.5rem 0rem 0rem 1.5rem;
+}
+
+h2 {
+  padding: 1rem 0rem 0rem 2rem;
+}
+
+h3 {
+  padding: 1rem 0rem 0rem 3rem;
+}
+
+h4 {
+  padding: 1rem 0rem 0rem 4rem;
+}
+
+p {
+  padding: .5rem 0rem 0rem 6rem;
+}
+
+ol {
+  padding: .5rem 0rem 0rem 6rem;
+}
+
+a {
+  text-decoration: underline;
+  color: var(--link-color);
+
+  &:hover {
+    color: var(--link-hover-color);
+  }
+}

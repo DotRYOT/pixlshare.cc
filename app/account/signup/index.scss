@@ -1,0 +1,164 @@
+@import "../../scss/globalNoAcc";
+@import "../../scss/navNoAccount";
+
+.topNavRight {
+  h2 {
+    margin-right: 1rem;
+  }
+}
+
+body {
+  overflow: hidden;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+
+  #signupForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 50%;
+
+    @media (max-width: 768px) {
+      width: 65%;
+    }
+
+    @media (max-width: 480px) {
+      width: 80%;
+    }
+
+    input[type="text"],
+    [type="email"],
+    [type="password"],
+    [type="submit"] {
+      background-color: var(--primary-bg);
+      color: var(--text-color);
+      border-top: 0.1rem solid var(--border-color);
+      border-bottom: 0.1rem solid var(--border-color);
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      width: 100%;
+      margin-bottom: 0.5rem;
+
+      &::placeholder {
+        color: var(--text-color);
+      }
+
+      &:focus {
+        border-color: var(--accent-color);
+        box-shadow: 0 0 0 3px rgba(255, 69, 0, 0.2);
+      }
+
+      @media (max-width: 480px) {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.9rem;
+      }
+    }
+
+    input[type="submit"] {
+      cursor: pointer;
+    }
+
+    .date-input-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+
+      .date-label {
+        margin: 0.25rem 0;
+      }
+
+      .date-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        border-top: 0.1rem solid var(--border-color);
+        border-bottom: 0.1rem solid var(--border-color);
+        padding: 0.75rem 1rem;
+        background-color: var(--primary-bg);
+        color: var(--text-color);
+        width: 100%;
+
+        // Hide default browser date pickers
+        input[type="date"] {
+          &::-webkit-calendar-picker-indicator {
+            display: none;
+          }
+
+          &::-moz-calendar-picker-indicator {
+            display: none;
+          }
+
+          &::-ms-clear,
+          &::-ms-expand {
+            display: none;
+          }
+        }
+
+        input {
+          background-color: var(--primary-bg);
+          color: var(--text-color);
+          font-size: 1rem;
+
+          &::placeholder {
+            color: var(--text-color);
+          }
+
+          &:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(255, 69, 0, 0.2);
+          }
+        }
+
+        @media (max-width: 768px) {
+          flex-direction: column;
+          align-items: stretch;
+
+          input {
+            width: 100%;
+            margin-bottom: 0.5rem;
+          }
+        }
+      }
+
+      .date-error-message {
+        color: var(--error-color);
+        font-size: 0.75rem;
+        margin-top: 0.25rem;
+        display: none;
+        animation: fadeIn 0.3s ease forwards;
+      }
+    }
+
+    .caps-warning {
+      color: var(--warning-color);
+      font-size: 0.85rem;
+
+      @media (max-width: 480px) {
+        font-size: 0.75rem;
+      }
+    }
+
+    .date-hint {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: var(--placeholder-color);
+      font-size: 0.75rem;
+      margin: 0.5rem 0;
+      cursor: help;
+
+      @media (max-width: 480px) {
+        font-size: 0.65rem;
+      }
+    }
+  }
+}

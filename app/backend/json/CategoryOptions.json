@@ -1,0 +1,54 @@
+[
+    {
+        "value": "0",
+        "text": "Random"
+    },
+    {
+        "value": "1",
+        "text": "Technology"
+    },
+    {
+        "value": "2",
+        "text": "Art & Design"
+    },
+    {
+        "value": "3",
+        "text": "Food"
+    },
+    {
+        "value": "4",
+        "text": "Travel"
+    },
+    {
+        "value": "5",
+        "text": "Games"
+    },
+    {
+        "value": "6",
+        "text": "Memes"
+    },
+    {
+        "value": "7",
+        "text": "Animals"
+    },
+    {
+        "value": "8",
+        "text": "Architecture"
+    },
+    {
+        "value": "9",
+        "text": "Nature"
+    },
+    {
+        "value": "10",
+        "text": "Question"
+    },
+    {
+        "value": "998",
+        "text": "NSFW"
+    },
+    {
+        "value": "999",
+        "text": "Comment"
+    }
+]

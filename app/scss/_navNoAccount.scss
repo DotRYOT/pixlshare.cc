@@ -1,0 +1,141 @@
+#topNav {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-content: stretch;
+  align-content: stretch;
+  -webkit-align-items: center;
+  align-items: center;
+
+  width: 100%;
+  height: 3.5rem;
+
+  background-color: var(--primary-bg);
+
+  border-bottom: .1rem solid var(--accent-color);
+
+  position: fixed;
+  top: 0rem;
+  left: 0rem;
+
+  z-index: 999;
+
+  .topNavLeft {
+    p {
+      padding-left: 2rem;
+    }
+  }
+
+  .topNavRight {
+    button {
+      background-color: transparent;
+      padding-right: 1rem;
+
+      cursor: pointer;
+
+      ion-icon {
+        font-size: 2rem;
+      }
+    }
+  }
+
+
+  img {
+    height: 2rem;
+    width: 2rem;
+    object-fit: contain;
+    border-radius: .25rem;
+  }
+}
+
+#bottomNav {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-content: stretch;
+  align-content: stretch;
+  -webkit-align-items: flex-end;
+  align-items: flex-end;
+
+  width: 100%;
+  height: 4rem;
+
+  position: fixed;
+  bottom: 0rem;
+  left: 0;
+
+  z-index: 999;
+
+  .postButton {
+    width: 30%;
+    height: 4.25rem;
+
+    button {
+      color: var(--button-text-color);
+      background-color: var(--primary-bg);
+      // padding: .5rem 1.5rem;
+      width: 100%;
+      height: 100%;
+
+      border-top: .1rem solid var(--border-color);
+      border-left: .1rem solid var(--border-color);
+      border-right: .1rem solid var(--border-color);
+      border-top-left-radius: .25rem;
+      border-top-right-radius: .25rem;
+
+      cursor: pointer;
+
+      img {
+        height: 2rem;
+        height: 2rem;
+        border-radius: .5rem;
+      }
+
+      ion-icon {
+        font-size: 3rem;
+      }
+    }
+  }
+
+  .navButton {
+    width: 100%;
+    height: 3.5rem;
+
+    button {
+      color: var(--button-text-color);
+      background-color: var(--primary-bg);
+      // padding: .5rem 1.5rem;
+      width: 100%;
+      height: 100%;
+
+      &:hover {
+        background-color: var(--button-hover-bg);
+        cursor: pointer;
+      }
+
+      border-top: .1rem solid var(--border-color);
+      // border-left: .05rem solid var(--border-color);
+      // border-right: .05rem solid var(--border-color);
+
+      img {
+        height: 2rem;
+        height: 2rem;
+        border-radius: .5rem;
+      }
+
+      ion-icon {
+        font-size: 2rem;
+      }
+    }
+  }
+}

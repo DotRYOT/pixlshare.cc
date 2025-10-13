@@ -1,0 +1,27 @@
+{
+  "theme_color": "#ff4500",
+  "background_color": "#111111",
+  "icons": [
+    {
+      "purpose": "maskable",
+      "sizes": "512x512",
+      "src": "./assets/logos/icon512_maskable.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "any",
+      "sizes": "512x512",
+      "src": "./assets/logos/icon512_rounded.png",
+      "type": "image/png"
+    }
+  ],
+  "orientation": "any",
+  "display": "standalone",
+  "dir": "auto",
+  "lang": "en-US",
+  "name": "PixlShare",
+  "short_name": "PXL",
+  "start_url": "https://pixlshare.cc/",
+  "scope": "https://pixlshare.cc/",
+  "description": "Share your favorite music videos, movies, and memes with fellow members who appreciate the same content you enjoy in your free time."
+}

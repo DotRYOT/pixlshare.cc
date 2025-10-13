@@ -1,0 +1,144 @@
+@import "../../scss/globalNoAcc";
+@import "../../scss/navNoAccount";
+
+.topNavRight {
+  h2 {
+    margin-right: 1rem;
+  }
+}
+
+.formContainer {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-align-content: stretch;
+  align-content: stretch;
+  -webkit-align-items: center;
+  align-items: center;
+
+  width: 100%;
+
+  form {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-content: stretch;
+    align-content: stretch;
+    -webkit-align-items: center;
+    align-items: center;
+
+    background-color: var(--primary-bg);
+
+    width: 80%;
+
+    h2 {
+      margin: 1rem 0rem;
+    }
+
+    p {
+      margin-bottom: .5rem;
+
+      a {
+        text-decoration: underline;
+        color: var(--text-color);
+      }
+    }
+
+    input[type="text"],
+    [type="email"],
+    [type="password"],
+    [type="submit"] {
+      background-color: var(--primary-bg);
+      color: var(--text-color);
+      border-top: 0.1rem solid var(--border-color);
+      border-bottom: 0.1rem solid var(--border-color);
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      width: 100%;
+      margin-bottom: 0.5rem;
+
+      &::placeholder {
+        color: var(--text-color);
+      }
+
+      &:focus {
+        border-color: var(--accent-color);
+        box-shadow: 0 0 0 3px rgba(255, 69, 0, 0.2);
+      }
+
+      @media (max-width: 480px) {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.9rem;
+      }
+    }
+
+    #passwordStrength {
+      padding: .5rem 1rem;
+
+      border-top: .1rem solid var(--border-color);
+      border-bottom: .1rem solid var(--border-color);
+
+      background-color: var(--primary-bg);
+      margin-bottom: .5rem;
+    }
+
+    #passwordMatchError {
+      padding: .5rem 1rem;
+      border-radius: .25rem;
+      border: .1rem solid var(--border-color);
+      background-color: var(--primary-bg);
+      margin-bottom: .5rem;
+    }
+
+    .password-strength {
+      font-size: 0.9em;
+      color: red;
+    }
+
+    .password-strength.strong {
+      color: green;
+    }
+
+    .password-match-error {
+      color: red;
+      display: none;
+    }
+
+    .info_container {
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-direction: row;
+      flex-direction: row;
+      -webkit-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+      -webkit-justify-content: space-around;
+      justify-content: space-around;
+      -webkit-align-content: stretch;
+      align-content: stretch;
+      -webkit-align-items: center;
+      align-items: center;
+
+      width: 100%;
+      margin-bottom: .25rem;
+    }
+
+    .password-strength {
+      color: green;
+    }
+
+    .password-match-error {
+      color: red;
+      display: none;
+    }
+  }
+}

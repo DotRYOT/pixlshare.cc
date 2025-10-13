@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setup Your Profile - PIXLSHARE</title>
+    <link rel="stylesheet" href="./css/index.min.css">
+    <link rel="shortcut icon"
+      href="../../../assets/logos/pixlshareLogo_white_128.png"
+      type="image/x-icon">
+    <link rel="manifest" href="../../../manifest.json">
+  </head>
+  <body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="module"
+      src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/lineWobble.js"></script>
+    <!-- %@@@@@@@@@@@@@@@@%@@@@%@%@@@@@@@@@@@@@@@@@@@@%@@@@@@ -->
+    <!-- @@@@@@@@@@@%@%%@@@@@@@@@@@@@@@@@@@%@%@@@@@@@@@@@@@@@ -->
+    <!-- @@@@@@@@#::::::::::::-+#%%@%%::::::::::::::::::+%@@% -->
+    <!-- @@@@@@@%-               .*%%+                 .*%%@@ -->
+    <!-- @@@@@@@%.                 %%:                 :%@@@@ -->
+    <!-- @@@@@@@*                  ##                  =%@@@@ -->
+    <!-- @@@@@#:      *%%%=      -#%%%%%*.     .*%%%%%%%@@@@@ -->
+    <!-- @@@@%=       ===-       #%@@@@%=      =%@@@@@%@@@@@@ -->
+    <!-- @@@@%-                 +%@@%@%#:      *%@@%@@@@@@%@@ -->
+    <!-- @@@%*.               :#%@@@@@%*      :#@@@@@@@@@%@@@ -->
+    <!-- @@@%*-              :+%%%@%@@%#=      -%%@@@@@@@@@@@ -->
+    <!-- @@@@%=      .%#:      *%@%@@%@%=      =%@@@@@@@@@@@@ -->
+    <!-- @%%@%-      =@%=      =%@@@@@@#:      *%@@%@@@@@@@@@ -->
+    <!-- @@@@*.      #@%*      .#%@@@@%*      :#%@@@@@@@@@@%@ -->
+    <!-- @@@@#*******%%%%#******%%@@@@%#******#%@@@@@@@@@@@@@ -->
+    <!-- @@@@%@@@@@@@%@@@@%@@@@@@%@@@@@@@@@@@@@@@@@@@@%%@@@@@ -->
+    <!-- @@@@@%@@@@@@@@@%@@@@@@%@@@%@@@@%@@@@@@@@@@%@@@@@@@@@ -->
+    <nav id="topNav">
+      <div class="topNavLeft">
+        <p class="logoFont">PXL</p>
+      </div>
+      <div class="topNavRight">
+        <h2>Profile Style</h2>
+      </div>
+    </nav>
+    <nav id="bottomNav">
+      <div class="navButton">
+        <button type="button" name="signup"
+          onclick="window.location.href='../../signup/'">
+          <ion-icon size="large" name="log-in-outline"></ion-icon>
+        </button>
+      </div>
+      <div class="navButton">
+        <button type="button" name="signin"
+          onclick="window.location.href='../../signin/'">
+          <ion-icon size="large" name="create-outline"></ion-icon>
+        </button>
+      </div>
+    </nav>
+    <form action="../../../backend/scripts/account/_profileUpdateScript.php"
+      enctype="multipart/form-data" method="post" class="form-container">
+      <!-- Page 1 - Profile Pictures -->
+      <div class="form-page" id="page1">
+        <h2>Profile Setup (1/2)</h2>
+
+        <!-- Profile Picture Upload -->
+        <div class="upload-section">
+          <h3>Profile Picture</h3>
+          <label class="upload-label">
+            Click to upload
+            <input type="file" id="pfpUpload" name="profileImage" accept="image/*" hidden>
+            <img id="pfpPreview" class="preview-image">
+          </label>
+          <button class="skip-btn" type="button"
+            onclick="skipUpload('pfp')">Skip</button>
+        </div>
+
+        <!-- Background Upload -->
+        <div class="upload-section">
+          <h3>Background Image</h3>
+          <label class="upload-label">
+            Click to upload
+            <input type="file" id="bgUpload" name="backgroundImage" accept="image/*" hidden>
+            <img id="bgPreview" class="preview-image">
+          </label>
+          <button class="skip-btn" type="button"
+            onclick="skipUpload('bg')">Skip</button>
+        </div>
+
+        <div class="navigation-btns">
+          <button type="button" onclick="nextPage()">Next</button>
+        </div>
+      </div>
+
+      <!-- Page 2 - Bio -->
+      <div class="form-page hidden" id="page2">
+        <h2>Profile Setup (2/2)</h2>
+
+        <div class="bio-section">
+          <h3>Bio</h3>
+          <textarea id="bio" placeholder="Tell us about yourself..." name="bioText"></textarea>
+          <button class="skip-btn" type="button"
+            onclick="skipBio()">Skip</button>
+        </div>
+
+        <div class="navigation-btns">
+          <button type="button" onclick="window.location.href='../../../profile/'">Skip</button>
+          <button type="submit">Finish Setup</button>
+        </div>
+      </div>
+    </form>
+
+    <script>
+    // Page Navigation
+    function nextPage() {
+      document.getElementById('page1').classList.add('hidden');
+      document.getElementById('page2').classList.remove('hidden');
+    }
+
+    function prevPage() {
+      document.getElementById('page2').classList.add('hidden');
+      document.getElementById('page1').classList.remove('hidden');
+    }
+
+    // Image Preview Handling
+    document.getElementById('pfpUpload').addEventListener('change', function(e) {
+      handleImageUpload(e, 'pfpPreview');
+    });
+
+    document.getElementById('bgUpload').addEventListener('change', function(e) {
+      handleImageUpload(e, 'bgPreview');
+    });
+
+    function handleImageUpload(event, previewId) {
+      const file = event.target.files[0];
+      const preview = document.getElementById(previewId);
+      
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          preview.src = e.target.result;
+          preview.style.display = 'block';
+        }
+        reader.readAsDataURL(file);
+      }
+    }
+
+    // Skip Functions
+    function skipUpload(type) {
+      if (type === 'pfp') {
+        document.getElementById('pfpUpload').value = '';
+        document.getElementById('pfpPreview').style.display = 'none';
+      } else {
+        document.getElementById('bgUpload').value = '';
+        document.getElementById('bgPreview').style.display = 'none';
+      }
+    }
+
+    function skipBio() {
+      document.getElementById('bio').value = '';
+    }
+
+    // Form Submission
+    function submitForm() {
+      // Handle form submission here
+      alert('Profile setup complete!');
+      // You would typically send data to server here
+    }
+  </script>
+    <!-- Ionicons -->
+    <script type="module"
+      src="https://cdn.jsdelivr.net/npm/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+      crossorigin></script>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "notifications": {
+    "UUID": "",
+    "PUID": "",
+    "type": "",
+    "userName": "",
+    "postPreview": "",
+    "timestamp": "",
+    "read": false,
+    "actionUrl": ""
+  },
+  "totalCount": 0
+}

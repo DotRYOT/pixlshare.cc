@@ -67,7 +67,10 @@ require "../../../../../backend/Files/repoPages/userPostPage/pageScript.php";
       <?php if ($PageAdmin === true) { ?>
         <div class="closeSuspended">
           <button type="button" name="closeSuspended" onclick="closeSuspended()">
-            <ion-icon name="close-outline"></ion-icon>
+            <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF">
+              <path
+                d="m249-207-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z" />
+            </svg>
           </button>
         </div>
         <script>
@@ -273,10 +276,16 @@ require "../../../../../backend/Files/repoPages/userPostPage/pageScript.php";
       <?php if ($PostOwner === true || $PageAdmin === true) { ?>
         <section class="middleMoreMenu">
           <button name="Delete" type="button">
-            <ion-icon name="trash-outline"></ion-icon>
+            <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF">
+              <path
+                d="M201-120v-630h-41v-60h188v-30h264v30h188v60h-41v630H201Zm60-60h438v-570H261v570Zm106-86h60v-399h-60v399Zm166 0h60v-399h-60v399ZM261-750v570-570Z" />
+            </svg>
           </button>
           <button type="button" name="edit" onclick="ToggleMoreMenu(), PostEdit()">
-            <ion-icon name="create-outline"></ion-icon>
+            <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF">
+              <path
+                d="M180-180h44l472-471-44-44-472 471v44Zm-60 60v-128l617-616 128 128-617 616H120Zm659-617-41-41 41 41Zm-105 64-22-22 44 44-22-22Z" />
+            </svg>
           </button>
         </section>
         <div class="line"></div>
@@ -302,10 +311,16 @@ require "../../../../../backend/Files/repoPages/userPostPage/pageScript.php";
         </div>
         <div class="bottomBottomSection">
           <button name="reportPost" type="button" onclick="ToggleReportForm()">
-            <ion-icon name="alert-outline"></ion-icon>
+            <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF">
+              <path
+                d="M480-281q14 0 24.5-10.5T515-316q0-14-10.5-24.5T480-351q-14 0-24.5 10.5T445-316q0 14 10.5 24.5T480-281Zm-30-144h60v-263h-60v263ZM330-120 120-330v-300l210-210h300l210 210v300L630-120H330Zm25-60h250l175-175v-250L605-780H355L180-605v250l175 175Zm125-300Z" />
+            </svg>
           </button>
           <button type="button" name="share" onclick="shareCopyButton()">
-            <ion-icon name="share-outline"></ion-icon>
+            <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF">
+              <path
+                d="M686-80q-47.5 0-80.75-33.25T572-194q0-8 5-34L278-403q-16.28 17.34-37.64 27.17Q219-366 194-366q-47.5 0-80.75-33.25T80-480q0-47.5 33.25-80.75T194-594q24 0 45 9.3 21 9.29 37 25.7l301-173q-2-8-3.5-16.5T572-766q0-47.5 33.25-80.75T686-880q47.5 0 80.75 33.25T800-766q0 47.5-33.25 80.75T686-652q-23.27 0-43.64-9Q622-670 606-685L302-516q3 8 4.5 17.5t1.5 18q0 8.5-1 16t-3 15.5l303 173q16-15 36.09-23.5 20.1-8.5 43.07-8.5Q734-308 767-274.75T800-194q0 47.5-33.25 80.75T686-80Zm.04-60q22.96 0 38.46-15.54 15.5-15.53 15.5-38.5 0-22.96-15.54-38.46-15.53-15.5-38.5-15.5-22.96 0-38.46 15.54-15.5 15.53-15.5 38.5 0 22.96 15.54 38.46 15.53 15.5 38.5 15.5Zm-492-286q22.96 0 38.46-15.54 15.5-15.53 15.5-38.5 0-22.96-15.54-38.46-15.53-15.5-38.5-15.5-22.96 0-38.46 15.54-15.5 15.53-15.5 38.5 0 22.96 15.54 38.46 15.53 15.5 38.5 15.5Zm492-286q22.96 0 38.46-15.54 15.5-15.53 15.5-38.5 0-22.96-15.54-38.46-15.53-15.5-38.5-15.5-22.96 0-38.46 15.54-15.5 15.53-15.5 38.5 0 22.96 15.54 38.46 15.53 15.5 38.5 15.5ZM686-194ZM194-480Zm492-286Z" />
+            </svg>
             <input type="text" value="https://<?= $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>" id="copyInput"
               readonly>
           </button>
@@ -314,7 +329,9 @@ require "../../../../../backend/Files/repoPages/userPostPage/pageScript.php";
     </div>
     <div class="closeMoreMenu">
       <button type="button" name="CloseMoreMenu" onclick="ToggleMoreMenu()">
-        <ion-icon name="close-outline"></ion-icon>
+        <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF">
+          <path d="m249-207-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z" />
+        </svg>
       </button>
     </div>
   </div>
@@ -341,11 +358,21 @@ require "../../../../../backend/Files/repoPages/userPostPage/pageScript.php";
               Your browser does not support the video tag.
             </video>
             <div class="controls">
-              <button id="play-pause"><ion-icon name="play"></ion-icon></button>
+              <button id="play-pause">
+                <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF">
+                  <path d="M320-203v-560l440 280-440 280Z" />
+                </svg>
+              </button>
 
               <!-- Volume control group -->
               <div class="volume-control">
-                <button id="volume"><ion-icon name="volume-high"></ion-icon></button>
+                <button id="volume">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px"
+                    fill="#FFFFFF">
+                    <path
+                      d="M560-131v-62q97-28 158.5-107.5T780-481q0-101-61-181T560-769v-62q124 28 202 125.5T840-481q0 127-78 224.5T560-131ZM120-360v-240h160l200-200v640L280-360H120Zm420 48v-337q55 17 87.5 64T660-480q0 57-33 104t-87 64ZM420-648 307-540H180v120h127l113 109v-337Zm-94 168Z" />
+                  </svg>
+                </button>
                 <div class="volume-slider">
                   <input type="range" min="0" max="1" step="0.05" value="1">
                 </div>
@@ -354,7 +381,12 @@ require "../../../../../backend/Files/repoPages/userPostPage/pageScript.php";
               <div class="progress-bar">
                 <div class="buffer-bar"></div>
               </div>
-              <button id="fullscreen"><ion-icon name="expand"></ion-icon></button>
+              <button id="fullscreen">
+                <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF">
+                  <path
+                    d="M120-120v-193h60v133h133v60H120Zm527 0v-60h133v-133h60v193H647ZM120-647v-193h193v60H180v133h-60Zm660 0v-133H647v-60h193v193h-60Z" />
+                </svg>
+              </button>
             </div>
           </div>
           <?php
@@ -381,22 +413,42 @@ require "../../../../../backend/Files/repoPages/userPostPage/pageScript.php";
       <div class="toolBar">
         <div class="leftToolBar">
           <button id="mainPostLikeButton" type="button" name="like" data-puid="<?= $PUID; ?>">
-            <ion-icon class="heart-outline-icon" name="heart-outline"></ion-icon>
-            <ion-icon class="heart-icon" name="heart" style="display: none;"></ion-icon>
+            <svg xmlns="http://www.w3.org/2000/svg" class="heart-outline-icon" height="48px" viewBox="0 -960 960 960"
+              width="48px" fill="#FFFFFF">
+              <path
+                d="m480-121-41-37q-105.77-97.12-174.88-167.56Q195-396 154-451.5T96.5-552Q80-597 80-643q0-90.15 60.5-150.58Q201-854 290-854q57 0 105.5 27t84.5 78q42-54 89-79.5T670-854q89 0 149.5 60.42Q880-733.15 880-643q0 46-16.5 91T806-451.5Q765-396 695.88-325.56 626.77-255.12 521-158l-41 37Zm0-79q101.24-93 166.62-159.5Q712-426 750.5-476t54-89.14q15.5-39.13 15.5-77.72 0-66.14-42-108.64T670.22-794q-51.52 0-95.37 31.5T504-674h-49q-26-56-69.85-88-43.85-32-95.37-32Q224-794 182-751.5t-42 108.82q0 38.68 15.5 78.18 15.5 39.5 54 90T314-358q66 66 166 158Zm0-297Z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="heart-icon" style="display: none;" height="48px"
+              viewBox="0 -960 960 960" width="48px" fill="#ff0000ff">
+              <path
+                d="m480-121-41-37q-106-97-175-167.5t-110-126Q113-507 96.5-552T80-643q0-90 60.5-150.5T290-854q57 0 105.5 27t84.5 78q42-54 89-79.5T670-854q89 0 149.5 60.5T880-643q0 46-16.5 91T806-451.5q-41 55.5-110 126T521-158l-41 37Z" />
+            </svg>
             <span class="like-count">0</span>
           </button>
           <!-- <button type="button" name="re-post">
-            <ion-icon name="repeat-outline"></ion-icon>
+            <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF">
+              <path
+                d="M280-80 120-240l160-160 42 44-86 86h464v-160h60v220H236l86 86-42 44Zm-80-450v-220h524l-86-86 42-44 160 160-160 160-42-44 86-86H260v160h-60Z" />
+            </svg>
             <span style="margin-left: .25rem;">0</span>
           </button> -->
         </div>
         <div class="rightToolBar">
           <button type="button" name="bookmarkButton">
-            <ion-icon name="bookmark-outline"></ion-icon>
-            <ion-icon name="bookmark" class="bookmarked" style="display: none;"></ion-icon>
+            <svg xmlns="http://www.w3.org/2000/svg" class="bookmark-outline-icon" height="48px" viewBox="0 -960 960 960"
+              width="48px" fill="#FFFFFF">
+              <path d="M200-120v-725h560v725L480-240 200-120Zm60-91 220-93 220 93v-574H260v574Zm0-574h440-440Z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="bookmark-icon" height="48px" viewBox="0 -960 960 960"
+              width="48px" fill="#FFFFFF" style="display: none;">
+              <path d="M200-120v-725h560v725L480-240 200-120Z" />
+            </svg>
           </button>
           <button type="button" name="moreMenu" onclick="ToggleMoreMenu()">
-            <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+            <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF">
+              <path
+                d="M479.86-160Q460-160 446-174.14t-14-34Q432-228 446.14-242t34-14Q500-256 514-241.86t14 34Q528-188 513.86-174t-34 14Zm0-272Q460-432 446-446.14t-14-34Q432-500 446.14-514t34-14Q500-528 514-513.86t14 34Q528-460 513.86-446t-34 14Zm0-272Q460-704 446-718.14t-14-34Q432-772 446.14-786t34-14Q500-800 514-785.86t14 34Q528-732 513.86-718t-34 14Z" />
+            </svg>
           </button>
         </div>
       </div>
@@ -423,7 +475,10 @@ require "../../../../../backend/Files/repoPages/userPostPage/pageScript.php";
           <input type="hidden" name="PUID" value="<?= $PUID; ?>">
           <input type="hidden" name="PosterUUID" value="<?= $PosterUUID; ?>">
           <button type="submit" name="editPost">
-            <ion-icon name="create-outline"></ion-icon>
+            <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF">
+              <path
+                d="M560-80v-123l263-262 122 122L683-80H560Zm300-263-37-37 37 37ZM620-140h38l121-122-18-19-19-18-122 121v38ZM160-80v-800h400l240 240v116h-60v-76H520v-220H220v680h280v60H160Zm350-400Zm251 199-19-18 37 37-18-19Z" />
+            </svg>
             <span>Edit</span>
           </button>
         </form>
@@ -524,56 +579,44 @@ require "../../../../../backend/Files/repoPages/userPostPage/pageScript.php";
 
       // Like Script
 
-      // document.addEventListener('DOMContentLoaded', function () {
-      //   checkLikeStatus();
-      //   setInterval(checkLikeStatus, 1000);
-      // });
-
       document.addEventListener("DOMContentLoaded", function () {
         const likeButton = document.getElementById("mainPostLikeButton");
         if (likeButton) {
           const puid = likeButton.getAttribute("data-puid");
-          checkLikeStatus(puid, likeButton);
-          setInterval(() => {
+          if (puid) {
             checkLikeStatus(puid, likeButton);
-          }, 10000);
+            const statusInterval = setInterval(() => {
+              checkLikeStatus(puid, likeButton);
+            }, 10000);
+
+          } else {
+            console.warn("PUID not found on the main like button.");
+          }
         } else {
-          console.warn("Like button not found on page.");
+          console.warn("Main like button not found on page.");
         }
       });
 
       function checkLikeStatus(puid, button) {
-        if (!button) {
-          console.error("Button is undefined in checkLikeStatus");
+        if (!puid) {
+          console.error("PUID is undefined or empty in checkLikeStatus");
           return;
         }
-
         fetch(`<?= filePath("/backend/api/_checkLikeStatus.php"); ?>?PUID=${puid}`)
           .then(response => {
-            if (!response.ok) throw new Error("Network response was not ok");
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
             return response.json();
           })
           .then(data => {
-            if (data.error) {
-              console.error("Like Error:", data.error);
-              return;
-            }
+            const isLiked = data.liked;
+            const count = data.count;
+            updateLikeUI(isLiked, count);
 
-            const heart = button.querySelector(".heart-icon");
-            const heartOutline = button.querySelector(".heart-outline-icon");
-            const likeCount = button.querySelector(".like-count");
-
-            if (heart && heartOutline && likeCount) {
-              heart.style.display = data.liked ? "inline" : "none";
-              heartOutline.style.display = data.liked ? "none" : "inline";
-              likeCount.textContent = data.count;
-
-              // ✅ Add this line to set the heart color to red when liked
-              heart.style.color = data.liked ? "red" : ""; // Empty string resets color
-            }
           })
           .catch(error => {
-            console.error("Fetch error:", error);
+            console.error("Error fetching like status for PUID", puid, ":", error);
           });
       }
 
@@ -585,167 +628,155 @@ require "../../../../../backend/Files/repoPages/userPostPage/pageScript.php";
       });
 
       function updateLikeUI(isLiked, count) {
-        const heart = document.querySelector('ion-icon[name="heart"]');
-        const heartOutline = document.querySelector('ion-icon[name="heart-outline"]');
-        const likeCount = document.querySelector('button[name="like"] span');
+        const button = document.querySelector(`button[name="like"][data-puid="${PUID}"]`);
+        if (!button) {
+          console.error("Main like button for PUID", PUID, "not found.");
+          return;
+        }
 
-        if (heart && heartOutline && likeCount) {
-          // Toggle icon visibility
-          heart.style.display = isLiked ? 'inline' : 'none';
-          heartOutline.style.display = isLiked ? 'none' : 'inline';
+        const heartOutlineIcon = button.querySelector('.heart-outline-icon');
+        const heartIcon = button.querySelector('.heart-icon');
+        const likeCountSpan = button.querySelector('.like-count');
 
-          // Update like count
-          likeCount.textContent = count;
-
-          // Set colors
+        if (heartOutlineIcon && heartIcon && likeCountSpan) {
           if (isLiked) {
-            heart.style.color = 'red';         // Red when liked
-            heartOutline.style.color = '';     // Reset outline color
+            heartOutlineIcon.style.display = 'none';
+            heartIcon.style.display = 'block';
+            heartIcon.style.fill = '#ff0000ff';
           } else {
-            heart.style.color = '';            // Reset filled heart color
-            heartOutline.style.color = 'white';// White when unliked
+            heartOutlineIcon.style.display = 'block';
+            heartIcon.style.display = 'none';
           }
+          likeCountSpan.textContent = count;
+        } else {
+          console.warn("Like UI elements (SVG icons or count span) not found for button with PUID:", PUID);
         }
       }
 
-      const likeButton = document.querySelector('button[name="like"]');
+      const PUID = "<?= $PUID ?>"; // Get PUID from PHP
+      const likeButton = document.querySelector('button[name="like"][data-puid="' + PUID + '"]'); // Select the specific button
+
       if (likeButton) {
         likeButton.addEventListener('click', function () {
-          const isLiked = document.querySelector('ion-icon[name="heart"]').style.display === 'inline';
-          const newLikeStatus = !isLiked;
-          const currentCount = parseInt(document.querySelector('button[name="like"] span').textContent);
+          const currentHeartIcon = likeButton.querySelector('.heart-icon');
+          const currentHeartOutlineIcon = likeButton.querySelector('.heart-outline-icon');
+          const currentIsLiked = currentHeartIcon && window.getComputedStyle(currentHeartIcon).display !== 'none';
+          const newLikeStatus = !currentIsLiked;
+          const currentCountSpan = likeButton.querySelector('.like-count');
+          let currentCount = parseInt(currentCountSpan.textContent) || 0;
 
-          fetch(`<?= filePath("/backend/api/"); ?>_likePost.php?PUID=<?= $PUID; ?>&action=${newLikeStatus ? 'like' : 'unlike'}`)
+          // Send the request to the backend
+          fetch(`<?= filePath("/backend/api/"); ?>_likePost.php?PUID=${PUID}&action=${newLikeStatus ? 'like' : 'unlike'}`)
             .then(response => response.text())
             .then(data => {
               if (data.includes("Rate limit exceeded")) {
                 alert(data);
               } else {
-                // Parse updated count from response if available
-                const updatedCount = newLikeStatus ? currentCount + 1 : Math.max(currentCount - 1, 0);
-                updateLikeUI(newLikeStatus, updatedCount);
+                checkLikeStatus(PUID, likeButton);
               }
             })
-            .catch(error => console.error('Error liking/unliking post:', error));
+            .catch(error => {
+              console.error('Error liking/unliking post:', error);
+              Toastify({
+                text: 'An error occurred while updating the like status. Please try again.',
+                duration: 3000,
+                gravity: "top",
+                position: "right",
+                style: {
+                  background: "#f44336" // Red color for error
+                }
+              }).showToast();
+            });
         });
+      } else {
+        console.warn("Main like button not found for attaching click handler.");
       }
 
       // Bookmark scripts
 
+      function updateBookmarkUI(isBookmarked) {
+        const bookmarkButton = document.querySelector('button[name="bookmarkButton"]');
+        if (!bookmarkButton) {
+          console.error("Bookmark button not found.");
+          return;
+        }
+
+        const bookmarkOutlineIcon = bookmarkButton.querySelector('.bookmark-outline-icon');
+        const bookmarkIcon = bookmarkButton.querySelector('.bookmark-icon');
+
+        if (bookmarkOutlineIcon && bookmarkIcon) {
+          if (isBookmarked) {
+            bookmarkOutlineIcon.style.display = 'none';
+            bookmarkIcon.style.display = 'block';
+            bookmarkIcon.style.fill = '#007eaf';
+          } else {
+            bookmarkOutlineIcon.style.display = 'block';
+            bookmarkIcon.style.display = 'none';
+          }
+        } else {
+          console.warn("Bookmark UI elements (SVG icons) not found inside the bookmark button.");
+        }
+      }
+
       document.addEventListener('DOMContentLoaded', function () {
-        checkBookmarkStatus();
+        checkBookmarkStatus(); // Check status on initial page load
       });
 
       function checkBookmarkStatus() {
         fetch(`../../../../../backend/api/_bookmarkCheck.php?PUID=<?= $PUID; ?>`)
-          .then(response => response.json())
+          .then(response => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+          })
           .then(data => {
-            // console.log('Bookmark check response:', data);
-            updateBookmarkUI(data.status === 'bookmarked');
+            const isBookmarked = data.status === 'bookmarked';
+            updateBookmarkUI(isBookmarked); // Update UI based on fetched status
           })
           .catch(error => console.error('Error checking bookmark status:', error));
-      }
-
-      function updateBookmarkUI(isBookmarked) {
-        const bookmarkOutline = document.querySelector('ion-icon[name="bookmark-outline"]');
-        const bookmark = document.querySelector('ion-icon[name="bookmark"]');
-
-        if (bookmarkOutline) {
-          bookmarkOutline.style.display = isBookmarked ? 'none' : 'inline';
-        }
-        if (bookmark) {
-          bookmark.style.display = isBookmarked ? 'inline' : 'none';
-        }
       }
 
       const bookmarkButton = document.querySelector('button[name="bookmarkButton"]');
       if (bookmarkButton) {
         bookmarkButton.addEventListener('click', function () {
-          const isBookmarked = document.querySelector('ion-icon[name="bookmark"]').style.display === 'inline';
-          const newBookmarkStatus = !isBookmarked;
+          const currentBookmarkIcon = bookmarkButton.querySelector('.bookmark-icon');
+          const currentIsBookmarked = currentBookmarkIcon && window.getComputedStyle(currentBookmarkIcon).display !== 'none';
+          const newBookmarkStatus = !currentIsBookmarked;
           fetch(`../../../../../backend/api/_bookmarkPost.php?action=${newBookmarkStatus ? 'bookmark' : 'unbookmark'}&PUID=<?= $PUID; ?>`)
-            .then(response => response.text())
+            .then(response => response.json())
             .then(data => {
-              if (data.includes("Rate limit exceeded")) {
-                alert(data);
+              if (data.error && data.error.includes("Rate limit exceeded")) {
+                alert(data.error);
+              } else if (data.message) {
+                checkBookmarkStatus();
               } else {
-                // console.log('Bookmark response:', data);
-                updateBookmarkUI(newBookmarkStatus); // Update UI based on new status
+                console.error("Unexpected response format from bookmark action:", data);
+                checkBookmarkStatus();
               }
             })
-            .catch(error => console.error('Error bookmarking/unbookmarking post:', error));
-        });
-      }
-
-      const defaultVolume = 0.5;
-
-      function setVolumeForAllVideos(volume) {
-        const videos = document.querySelectorAll('video');
-        videos.forEach(video => {
-          video.volume = volume;
-        });
-      }
-
-      const savedVolume = localStorage.getItem('videoVolume');
-      const volumeToSet = savedVolume !== null ? parseFloat(savedVolume) : defaultVolume;
-
-      document.addEventListener('DOMContentLoaded', function () {
-        setVolumeForAllVideos(volumeToSet); // Set volume and play videos
-
-        const volumeControl = document.getElementById('volumeControl');
-        if (volumeControl) {
-          volumeControl.value = volumeToSet; // Set the slider value
-        }
-      });
-
-      document.addEventListener('input', function (event) {
-        if (event.target.matches('#volumeControl')) {
-          const newVolume = parseFloat(event.target.value);
-          setVolumeForAllVideos(newVolume);
-          localStorage.setItem('videoVolume', newVolume);
-        }
-      });
-
-      function togglePlayPause() {
-        const mainVideo = document.querySelector('video#mainVideo'); // Adjust the selector as needed
-        const playPauseButton = document.getElementById('playPause');
-
-        if (mainVideo) {
-          const playIcon = playPauseButton.querySelector('ion-icon[name="play-outline"]');
-          const pauseIcon = playPauseButton.querySelector('ion-icon[name="pause-outline"]');
-
-          if (mainVideo.paused) {
-            mainVideo.play();
-            playIcon.style.display = 'none';
-            pauseIcon.style.display = 'flex';
-          } else {
-            mainVideo.pause();
-            playIcon.style.display = 'flex';
-            pauseIcon.style.display = 'none';
-          }
-        } else {
-          console.error('Main video element not found.');
-        }
-      }
-
-      const fullscreenButton = document.getElementById('fullscreenButton');
-      if (fullscreenButton) {
-        fullscreenButton.addEventListener('click', function () {
-          const mainVideo = document.getElementById('mainVideo');
-
-          if (!document.fullscreenElement) {
-            mainVideo.requestFullscreen().catch(err => {
-              console.error(`Error attempting to enable fullscreen mode: ${err.message} (${err.name})`);
+            .catch(error => {
+              console.error('Error bookmarking/unbookmarking post:', error);
+              Toastify({
+                text: 'An error occurred while updating the bookmark status. Please try again.',
+                duration: 3000,
+                gravity: "top",
+                position: "right",
+                style: {
+                  background: "#f44336"
+                }
+              }).showToast();
             });
-          } else {
-            document.exitFullscreen();
-          }
         });
+      } else {
+        console.warn("Bookmark button not found for attaching click handler.");
       }
     </script>
   </div>
   <div id="imageModal" class="modal" style="display:none;">
-    <ion-icon class="close" onclick="closeModal()" name="close-outline"></ion-icon>
+    <svg class="close" onclick="closeModal()" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF">
+      <path d="m249-207-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z" />
+    </svg>
     <img class="modal-content" id="modalImage">
   </div>
   <section class="commentSection">

@@ -6,6 +6,7 @@ require "../backend/_auth.php";
 require "../backend/connect/MainConnect.php";
 
 checkUserAuth($conn_main, "auth");
+displayError();
 
 $VUID = mysqli_real_escape_string($conn_main, $_SESSION['user']['UUID']);
 $username = mysqli_real_escape_string($conn_main, $_SESSION['user']['username']);

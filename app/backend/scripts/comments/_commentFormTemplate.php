@@ -19,7 +19,10 @@
       <div class="commentEmbedPopupContainer">
         <button class="commentEmbedPopupClose" type="button"
           onclick="commentForm_toggleYouTubeEmbed(this.closest('.commentPostPopup'))">
-          <ion-icon name="close-outline"></ion-icon>
+          <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF">
+            <path
+              d="m249-207-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z" />
+          </svg>
         </button>
         <section class="commentYouTubeInputSection">
           <input type="url" class="commentYouTubeLink" placeholder="Link">
@@ -36,20 +39,26 @@
     <div class="commentBottomContainer">
       <div class="commentTopLayer">
         <?php if ($_SERVER['HTTP_HOST'] == 'pixlshare.cc') { ?>
-        <div style="display: block; flex-flow: row;">
-          <div class="cf-turnstile" data-sitekey="0x4AAAAAAA27XzOGlxRe70Bl" data-size="flexible"></div>
-        </div>
+          <div style="display: block; flex-flow: row;">
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAAA27XzOGlxRe70Bl" data-size="flexible"></div>
+          </div>
         <?php } ?>
       </div>
       <div class="commentBottomLayer">
         <div class="commentBottomLeft">
           <button type="button" class="commentImageUploadButton">
-            <ion-icon name="image-outline"></ion-icon>
+            <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF">
+              <path
+                d="M480-480ZM120-120v-720h425v60H180v600h600v-365h60v425H120Zm120-162h480L576-474 449-307l-94-124-115 149Zm453-323v-87h-88v-60h88v-88h60v88h87v60h-87v87h-60Z" />
+            </svg>
           </button>
           <input type="file" class="commentImageUpload" accept="image/*" name="images" style="display: none;">
 
           <button type="button" onclick="commentForm_toggleYouTubeEmbed(this.closest('.commentPostPopup'))">
-            <ion-icon name="logo-youtube"></ion-icon>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+              <path
+                d="M616-242q-27 1-51.5 1.5t-43.5.5h-41q-71 0-133-2-53-2-104.5-5.5T168-257q-26-7-45-26t-26-45q-6-23-9.5-56T82-447q-2-36-2-73t2-73q2-30 5.5-63t9.5-56q7-26 26-45t45-26q23-6 74.5-9.5T347-798q62-2 133-2t133 2q53 2 104.5 5.5T792-783q26 7 45 26t26 45q6 23 9.5 56t5.5 63q2 36 2 73v17q-19-8-39-12.5t-41-4.5q-83 0-141.5 58.5T600-320q0 21 4 40.5t12 37.5ZM400-400l208-120-208-120v240Zm360 200v-80h-80v-80h80v-80h80v80h80v80h-80v80h-80Z" />
+            </svg>
           </button>
 
           <button type="button" class="commentTextLinkShower" style="display: none;">
@@ -58,7 +67,10 @@
         </div>
 
         <button type="submit" onclick="commentForm_showLoaderAndHideForm(this)">
-          <ion-icon size="large" name="newspaper-outline"></ion-icon>
+          <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#FFFFFF">
+            <path
+              d="M320.67-527.33V-594H640v66.67H320.67Zm0 124.66v-66.66H640v66.66H320.67Zm0 124.67v-66.67H640V-278H320.67ZM688-602.67V-688h-85.33v-66.67H688V-840h66.67v85.33H840V-688h-85.33v85.33H688ZM120-120v-720h449.33v66.67H186.67v586.66h586.66v-382.66H840V-120H120Z" />
+          </svg>
           <h2>Post</h2>
         </button>
       </div>

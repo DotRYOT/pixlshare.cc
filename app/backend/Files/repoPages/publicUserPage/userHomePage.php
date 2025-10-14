@@ -48,21 +48,35 @@
         if ($userLevel === '1') {
           ?>
           <div class="admin" title="Site Admin">
-            <ion-icon name="shield-outline"></ion-icon>
+            <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF">
+              <path
+                d="M480-81q-140-35-230-162.5T160-523v-238l320-120 320 120v238q0 152-90 279.5T480-81Zm0-62q115-38 187.5-143.5T740-523v-196l-260-98-260 98v196q0 131 72.5 236.5T480-143Zm0-337Z" />
+            </svg>
           </div>
           <?php
         }
         if ($isOver18 == true) {
           ?>
           <div class="check" title="Age Verified Profile">
-            <ion-icon name="checkmark-outline"></ion-icon>
+            <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF">
+              <path d="M378-246 154-470l43-43 181 181 384-384 43 43-427 427Z" />
+            </svg>
           </div>
         <?php } ?>
       </div>
       <div class="userInfo">
         <?php if (isset($_SESSION['user']['UUID'])) { ?>
           <button id="followButton" onclick="followUser(this)">
-            <ion-icon id="followingPersonIcon" name="person-add-outline"></ion-icon>
+            <svg xmlns="http://www.w3.org/2000/svg" id="followingPersonIcon" style="display: none;" height="48px" viewBox="0 -960 960 960"
+              width="48px" fill="#FFFFFF">
+              <path
+                d="M480-481q-66 0-108-42t-42-108q0-66 42-108t108-42q66 0 108 42t42 108q0 66-42 108t-108 42ZM160-160v-94q0-38 19-65t49-41q67-30 128.5-45T480-420q62 0 123 15.5t127.92 44.69q31.3 14.13 50.19 40.97Q800-292 800-254v94H160Zm60-60h520v-34q0-16-9.5-30.5T707-306q-64-31-117-42.5T480-360q-57 0-111 11.5T252-306q-14 7-23 21.5t-9 30.5v34Zm260-321q39 0 64.5-25.5T570-631q0-39-25.5-64.5T480-721q-39 0-64.5 25.5T390-631q0 39 25.5 64.5T480-541Zm0-90Zm0 411Z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" id="followingPersonIconPlus"height="48px"
+              viewBox="0 -960 960 960" width="48px" fill="#FFFFFF">
+              <path
+                d="M730-400v-130H600v-60h130v-130h60v130h130v60H790v130h-60Zm-370-81q-66 0-108-42t-42-108q0-66 42-108t108-42q66 0 108 42t42 108q0 66-42 108t-108 42ZM40-160v-94q0-35 17.5-63.5T108-360q75-33 133.34-46.5t118.5-13.5Q420-420 478-406.5T611-360q33 15 51 43t18 63v94H40Zm60-60h520v-34q0-16-9-30.5T587-306q-71-33-120-43.5T360-360q-58 0-107.5 10.5T132-306q-15 7-23.5 21.5T100-254v34Zm260-321q39 0 64.5-25.5T450-631q0-39-25.5-64.5T360-721q-39 0-64.5 25.5T270-631q0 39 25.5 64.5T360-541Zm0-90Zm0 411Z" />
+            </svg>
             <h3 id="followText"></h3>
           </button>
         <?php } ?>
@@ -116,15 +130,19 @@
             console.log('Response text:', text);
             try {
               const data = JSON.parse(text);
+              const followingPersonIcon = document.getElementById('followingPersonIcon');
+              const followingPersonIconPlus = document.getElementById('followingPersonIconPlus');
               if (data.success) {
                 if (isFollowing) {
                   document.getElementById('followText').innerText = 'Follow';
                   button.classList.remove("following");
-                  document.getElementById('followingPersonIcon').setAttribute('name', 'person-add-outline');
+                  followingPersonIcon.style.display = 'none';
+                  followingPersonIconPlus.style.display = 'block';
                 } else {
                   document.getElementById('followText').innerText = 'Following';
                   button.classList.add("following");
-                  document.getElementById('followingPersonIcon').setAttribute('name', 'person-outline');
+                  followingPersonIcon.style.display = 'block';
+                  followingPersonIconPlus.style.display = 'none';
                 }
               }
             } catch (error) {

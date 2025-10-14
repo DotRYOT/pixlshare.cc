@@ -30,14 +30,16 @@ document.addEventListener("DOMContentLoaded", () => {
       video
         .play()
         .then(() => {
-          playButton.innerHTML = '<ion-icon name="pause"></ion-icon>';
+          playButton.innerHTML =
+            '<svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF"><path d="M555-200v-560h175v560H555Zm-325 0v-560h175v560H230Z"/></svg>';
         })
         .catch((e) => {
           console.warn("Playback failed:", e);
         });
     } else {
       video.pause();
-      playButton.innerHTML = '<ion-icon name="play"></ion-icon>';
+      playButton.innerHTML =
+        '<svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF"><path d="M320-203v-560l440 280-440 280Z"/></svg>';
     }
   }
 
@@ -73,11 +75,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function updateVolumeIcon(volume) {
     if (volume === 0) {
-      volumeButton.innerHTML = '<ion-icon name="volume-mute"></ion-icon>';
+      volumeButton.innerHTML =
+        '<svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF"><path d="M813-56 681-188q-28 20-60.5 34.5T553-131v-62q23-7 44.5-15.5T638-231L473-397v237L273-360H113v-240h156L49-820l43-43 764 763-43 44Zm-36-232-43-43q20-34 29.5-72t9.5-78q0-103-60-184.5T553-769v-62q124 28 202 125.5T833-481q0 51-14 100t-42 93ZM643-422l-90-90v-130q47 22 73.5 66t26.5 96q0 15-2.5 29.5T643-422ZM473-592 369-696l104-104v208Z"/></svg>';
     } else if (volume < 0.5) {
-      volumeButton.innerHTML = '<ion-icon name="volume-low"></ion-icon>';
+      volumeButton.innerHTML =
+        '<svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF"><path d="M200-360v-240h160l200-200v640L360-360H200Zm420 48v-337q54 17 87 64t33 105q0 59-33 105t-87 63Z"/></svg>';
     } else {
-      volumeButton.innerHTML = '<ion-icon name="volume-high"></ion-icon>';
+      volumeButton.innerHTML =
+        '<svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF"><path d="M560-131v-62q97-28 158.5-107.5T780-481q0-101-61-181T560-769v-62q124 28 202 125.5T840-481q0 127-78 224.5T560-131ZM120-360v-240h160l200-200v640L280-360H120Zm420 48v-337q55 17 87.5 64T660-480q0 57-33 104t-87 64Z"/></svg>';
     }
   }
 
@@ -162,11 +167,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!document.fullscreenElement) {
       elem.requestFullscreen().catch(console.error);
       document.body.classList.add("fullscreen");
-      fullscreenButton.innerHTML = '<ion-icon name="contract"></ion-icon>'; // Exit icon
+      fullscreenButton.innerHTML =
+        '<svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF"><path d="M253-120v-133H120v-60h193v193h-60Zm394 0v-193h193v60H707v133h-60ZM120-647v-60h133v-133h60v193H120Zm527 0v-193h60v133h133v60H647Z"/></svg>'; // Exit icon
     } else {
       document.exitFullscreen().catch(console.error);
       document.body.classList.remove("fullscreen");
-      fullscreenButton.innerHTML = '<ion-icon name="expand"></ion-icon>'; // Enter icon
+      fullscreenButton.innerHTML =
+        '<svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF"><path d="M120-120v-193h60v133h133v60H120Zm527 0v-60h133v-133h60v193H647ZM120-647v-193h193v60H180v133h-60Zm660 0v-133H647v-60h193v193h-60Z"/></svg>'; // Enter icon
     }
   }
 
@@ -182,7 +189,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("fullscreenchange", () => {
     if (!document.fullscreenElement) {
       document.body.classList.remove("fullscreen");
-      fullscreenButton.innerHTML = '<ion-icon name="expand"></ion-icon>';
+      fullscreenButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF"><path d="M120-120v-193h60v133h133v60H120Zm527 0v-60h133v-133h60v193H647ZM120-647v-193h193v60H180v133h-60Zm660 0v-133H647v-60h193v193h-60Z"/></svg>';
     }
   });
 
@@ -191,11 +198,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!document.fullscreenElement) {
       wrapper.requestFullscreen().catch(console.error);
       document.body.classList.add("fullscreen");
-      fullscreenButton.innerHTML = '<ion-icon name="contract"></ion-icon>';
+      fullscreenButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF"><path d="M253-120v-133H120v-60h193v193h-60Zm394 0v-193h193v60H707v133h-60ZM120-647v-60h133v-133h60v193H120Zm527 0v-193h60v133h133v60H647Z"/></svg>';
     } else {
       document.exitFullscreen().catch(console.error);
       document.body.classList.remove("fullscreen");
-      fullscreenButton.innerHTML = '<ion-icon name="expand"></ion-icon>';
+      fullscreenButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF"><path d="M120-120v-193h60v133h133v60H120Zm527 0v-60h133v-133h60v193H647ZM120-647v-193h193v60H180v133h-60Zm660 0v-133H647v-60h193v193h-60Z"/></svg>';
     }
   });
 

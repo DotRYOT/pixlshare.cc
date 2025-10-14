@@ -24,14 +24,25 @@
   </div>
   <div class="topNavRight">
     <button type="button" name="notifications" onclick="toggleNotifications()">
-      <ion-icon name="file-tray-full-outline"></ion-icon>
+      <div id="NoteBox" class="NoteBox">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+          <path
+            d="M120-120v-720h720v720H120Zm66.67-66.67h586.66v-130.66H636q-27.33 39.33-68.83 60.66-41.5 21.34-87.17 21.34t-87.17-21.34Q351.33-278 324-317.33H186.67v130.66ZM480-302q40 0 72.33-23 32.34-23 51.67-59h169.33v-389.33H186.67V-384H356q19.33 36 51.67 59Q440-302 480-302ZM186.67-186.67H773.33 186.67Z" />
+        </svg>
+      </div>
       <div id="NoteAlert" class="NoteAlert" style="display: none;">
-        <ion-icon name="alert-outline"></ion-icon>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+          <path
+            d="M278-474h404v-66.67H278V-474Zm0-142.67h404v-66.66H278v66.66ZM120-120v-720h720v720H120Zm66.67-66.67h586.66v-130.66H636q-27.33 39.33-68.83 60.66-41.5 21.34-87.17 21.34t-87.17-21.34Q351.33-278 324-317.33H186.67v130.66ZM480.16-302q39.84 0 72.17-23 32.34-23 51.67-59h169.33v-389.33H186.67V-384H356q19.33 36 51.83 59t72.33 23ZM186.67-186.67H773.33 186.67Z" />
+        </svg>
       </div>
     </button>
     <?php if ($_SESSION['user']['userLevel'] == 1) { ?>
       <button type="button" name="adminPage" onclick="window.location.href='<?= filePath("/admin/"); ?>'">
-        <ion-icon name="shield-outline"></ion-icon>
+        <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF">
+          <path
+            d="M480-81q-140-35-230-162.5T160-523v-238l320-120 320 120v238q0 152-90 279.5T480-81Zm0-62q115-38 187.5-143.5T740-523v-196l-260-98-260 98v196q0 131 72.5 236.5T480-143Zm0-337Z" />
+        </svg>
       </button>
     <?php } ?>
   </div>
@@ -39,28 +50,43 @@
 <nav id="bottomNav">
   <div class="navButton first">
     <button type="button" name="home" onclick="window.location.href='<?= filePath("/home/"); ?>'">
-      <ion-icon name="home-outline"></ion-icon>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+        <path
+          d="M220-180h150v-250h220v250h150v-390L480-765 220-570v390Zm-60 60v-480l320-240 320 240v480H530v-250H430v250H160Zm320-353Z" />
+      </svg>
     </button>
   </div>
   <div class="navButton">
     <button type="button" name="explore" onclick="window.location.href='<?= filePath("/explore/"); ?>'">
-      <ion-icon name="grid-outline"></ion-icon>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+        <path
+          d="M120-120v-245h330v245H120Zm390 0v-415h330v415H510ZM390-305Zm180-170Zm-450 50v-415h330v415H120Zm270-60Zm120-110v-245h330v245H510Zm60-60ZM180-180h210v-125H180v125Zm390 0h210v-295H570v295ZM180-485h210v-295H180v295Zm390-170h210v-125H570v125Z" />
+      </svg>
     </button>
   </div>
   <div class="postButton">
     <button type="button" onclick="togglePostPopup()">
-      <ion-icon name="add-circle-outline"></ion-icon>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+        <path
+          d="M321-531v-60h319v60H321Zm0 127v-60h319v60H321Zm0 127v-60h319v60H321Zm371-327v-88h-88v-60h88v-88h60v88h88v60h-88v88h-60ZM120-120v-720h454v60H180v600h600v-394h60v454H120Z" />
+      </svg>
     </button>
   </div>
   <div class="navButton">
     <button type="button" onclick="toggleSearchPopup()">
-      <ion-icon name="search-outline"></ion-icon>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+        <path
+          d="M796-121 533-384q-30 26-69.96 40.5Q423.08-329 378-329q-108.16 0-183.08-75Q120-479 120-585t75-181q75-75 181.5-75t181 75Q632-691 632-584.85 632-542 618-502q-14 40-42 75l264 262-44 44ZM377-389q81.25 0 138.13-57.5Q572-504 572-585t-56.87-138.5Q458.25-781 377-781q-82.08 0-139.54 57.5Q180-666 180-585t57.46 138.5Q294.92-389 377-389Z" />
+      </svg>
     </button>
   </div>
   <?php if ($_SESSION['user']['userLevel'] == 1) { ?>
     <div class="navButton">
       <button type="button" name="store" id="store" onclick="window.location.href='<?= filePath("/skripstore/"); ?>'">
-        <ion-icon name="storefront-outline"></ion-icon>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+          <path
+            d="M160-80v-640h170v-10q0-63 43.5-106.5T480-880q63 0 106.5 43.5T630-730v10h170v640H160Zm60-60h520v-520H630v120h-60v-120H390v120h-60v-120H220v520Zm170-580h180v-10q0-38-26-64t-64-26q-38 0-64 26t-26 64v10ZM220-140v-520 520Z" />
+        </svg>
       </button>
     </div>
   <?php } ?>
@@ -73,20 +99,27 @@
 
 <div class="postButtonFloat">
   <button type="button" onclick="togglePostPopup()">
-    <ion-icon name="add-circle-outline"></ion-icon>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+      <path d="M450-450H200v-60h250v-250h60v250h250v60H510v250h-60v-250Z" />
+    </svg>
   </button>
 </div>
 
 <div class="searchContainer" id="searchPopup" style="display: none;">
   <div class="searchHeader">
     <button type="button" name="closeSearchPage" class="closeSearchWindow" onclick="toggleSearchPopup()">
-      <ion-icon size="large" name="close-outline"></ion-icon>
+      <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#ac2f2fff">
+        <path d="m249-207-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z" />
+      </svg>
     </button>
     <div class="searchPopup">
       <form id="searchForm">
         <input type="text" name="query" id="query" placeholder="Search..." required>
         <button type="submit" id="searchQueryButton">
-          <ion-icon size="large" name="search-outline"></ion-icon>
+          <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF">
+            <path
+              d="M796-121 533-384q-30 26-69.96 40.5Q423.08-329 378-329q-108.16 0-183.08-75Q120-479 120-585t75-181q75-75 181.5-75t181 75Q632-691 632-584.85 632-542 618-502q-14 40-42 75l264 262-44 44ZM377-389q81.25 0 138.13-57.5Q572-504 572-585t-56.87-138.5Q458.25-781 377-781q-82.08 0-139.54 57.5Q180-666 180-585t57.46 138.5Q294.92-389 377-389Z" />
+          </svg>
         </button>
       </form>
     </div>
@@ -96,7 +129,6 @@
 </div>
 
 <div class="postContainer" id="PostPopup" style="display: none;">
-  <!-- <div class="postContainer" id="PostPopup" style="display: flex;"> -->
   <div class="postHeader">
     <div class="postPopup">
       <div id="loaderZoomie" class="loaderZoomie" style="display: none;">
@@ -108,7 +140,10 @@
           <p>Categories</p>
           <select name="PostFilterOptions" id="postFilterOptions"></select>
           <button type="button" class="CloseButton" onclick="togglePostPopup()">
-            <ion-icon size="large" name="close-outline"></ion-icon>
+            <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF">
+              <path
+                d="m249-207-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z" />
+            </svg>
           </button>
         </div>
 
@@ -153,7 +188,11 @@
         <div class="youtubeEmbedPopup" id="youtubeEmbedPopup" style="display: none;">
           <div class="EmbedPopupContainer">
             <button type="button" name="youtubeEmbedTabClose" id="youtubeEmbedTabClose" onclick="toggleyoutubeEmbed()">
-              <ion-icon name="close-outline"></ion-icon>
+              <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px"
+                fill="#FFFFFF">
+                <path
+                  d="m249-207-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z" />
+              </svg>
             </button>
             <section id="youtubeinputSection">
               <input type="url" name="youtubeLink" id="youtubeLink" placeholder="Link">
@@ -213,17 +252,29 @@
             <div class="bottomPostLeft">
               <button type="button" id="uploadImageButton" onclick="document.getElementById('image-upload').click();">
                 <input type="file" id="image-upload" accept="image/*,video/*" name="images" style="display: none;">
-                <ion-icon name="image-outline"></ion-icon>
+                <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px"
+                  fill="#FFFFFF">
+                  <path
+                    d="M480-480ZM120-120v-720h425v60H180v600h600v-365h60v425H120Zm120-162h480L576-474 449-307l-94-124-115 149Zm453-323v-87h-88v-60h88v-88h60v88h87v60h-87v87h-60Z" />
+                </svg>
               </button>
               <button type="button" id="addYouTubeVideo" onclick="toggleyoutubeEmbed()">
-                <ion-icon name="logo-youtube"></ion-icon>
+                <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px"
+                  fill="#FFFFFF">
+                  <path
+                    d="M616-242q-27 1-51.5 1.5t-43.5.5h-41q-71 0-133-2-53-2-104.5-5.5T168-257q-26-7-45-26t-26-45q-6-23-9.5-56T82-447q-2-36-2-73t2-73q2-30 5.5-63t9.5-56q7-26 26-45t45-26q23-6 74.5-9.5T347-798q62-2 133-2t133 2q53 2 104.5 5.5T792-783q26 7 45 26t26 45q6 23 9.5 56t5.5 63q2 36 2 73v17q-19-8-39-12.5t-41-4.5q-83 0-141.5 58.5T600-320q0 21 4 40.5t12 37.5ZM400-400l208-120-208-120v240Zm360 200v-80h-80v-80h80v-80h80v80h80v80h-80v80h-80Z" />
+                </svg>
               </button>
               <button type="button" name="textLinkShower" class="textLinkShower" style="display: none;">
                 <p class="fakeURL" id="fakeURL">q5elqE21EHk</p>
               </button>
             </div>
             <button type="submit" id="postQueryButton" onclick="showLoaderAndHideForm()">
-              <ion-icon size="large" name="newspaper-outline"></ion-icon>
+              <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px"
+                fill="#FFFFFF">
+                <path
+                  d="M321-531v-60h319v60H321Zm0 127v-60h319v60H321Zm0 127v-60h319v60H321Zm371-327v-88h-88v-60h88v-88h60v88h88v60h-88v88h-60ZM120-120v-720h454v60H180v600h600v-394h60v454H120Z" />
+              </svg>
               <h2>Post</h2>
             </button>
           </div>
@@ -268,10 +319,13 @@
       }
 
       const NoteAlert = document.getElementById('NoteAlert');
+      const NoteBox = document.getElementById('NoteBox');
       if (data.totalCount > 0) {
         NoteAlert.style.display = 'flex';
+        NoteBox.style.display = 'none';
       } else {
         NoteAlert.style.display = 'none';
+        NoteBox.style.display = 'flex';
       }
 
       noNoteEl.style.display = 'none';

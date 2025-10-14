@@ -27,8 +27,8 @@
 
   --overlay-bg: #00000080;
 
-  --test1:#ff4500;
-  --test2:#111111;
+  --test1: #ff4500;
+  --test2: #111111;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
@@ -52,6 +52,14 @@ ion-icon {
 .logoFont {
   font-family: 'Moderniz', sans-serif;
   color: var(--secondary-text-color);
+}
+
+// Default color for icons
+svg {
+  height: 2rem;
+  width: 2rem;
+  color: var(--text-color);
+  fill: var(--text-color);
 }
 
 body {
@@ -383,6 +391,7 @@ footer {
 
 /* Hide scrollbar but keep functionality */
 .scrollHidden {
+
   /* For Chrome, Edge, and Safari */
   &::-webkit-scrollbar {
     display: none;

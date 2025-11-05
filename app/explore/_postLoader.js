@@ -250,7 +250,9 @@ function createPostCard(post) {
           >
             ${
               post.postState == 0
-                ? `<p>${post.content}</p>`
+                ? post.userState == 500
+                  ? `<p class="warnText">User has been suspended!</p>`
+                  : `<p>${post.content}</p>`
                 : `<p class="warnText">Post has been suspended!</p>`
             }
           </a>
@@ -264,7 +266,9 @@ function createPostCard(post) {
         <a href="../profile/u/${targetUUID}/post/${targetPUID}/${commentAnchor}">
           ${
             post.postState == 0
-              ? `<img data-src="../${post.image_id}" alt="Post image" class="lazy-img">`
+              ? post.userState == 500
+                ? `<img data-src="../assets/sadCat03.jpg" alt="Post image" class="lazy-img">`
+                : `<img data-src="../${post.image_id}" alt="Post image" class="lazy-img">`
               : `<img data-src="../assets/sadCat03.jpg" alt="Post image" class="lazy-img">`
           }
         </a>

@@ -46,9 +46,8 @@ $filter = isset($_GET['filter']) ? (int) $_GET['filter'] : null;
 $placeholders = str_repeat('?,', count($followedUsers) - 1) . '?';
 $types = str_repeat('s', count($followedUsers)) . 's'; // +1 for $user exclusion
 
-// Construct query
 $postsQuery = "
-    SELECT posts.*, users.username, users.pfp_image_link 
+    SELECT posts.*, users.username, users.pfp_image_link, users.userState 
     FROM posts 
     LEFT JOIN users ON posts.UUID = users.UUID 
     WHERE posts.UUID IN ($placeholders) 

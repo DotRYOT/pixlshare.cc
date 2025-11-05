@@ -1,11 +1,12 @@
 <?php
 session_start();
 
+require "../backend/connect/MainConnect.php";
 require "../backend/_include.php";
 require "../backend/_auth.php";
-require "../backend/connect/MainConnect.php";
 
 checkUserAuth($conn_main, "auth");
+checkSuspendedUser($conn_main, $_SESSION['user']['UUID']);
 displayError();
 
 $VUID = mysqli_real_escape_string($conn_main, $_SESSION['user']['UUID']);

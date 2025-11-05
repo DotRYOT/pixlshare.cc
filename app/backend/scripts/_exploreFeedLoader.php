@@ -41,7 +41,7 @@ $offset = max(0, (int) ($_GET['offset'] ?? 0));
 $limit = min(50, (int) ($_GET['limit'] ?? 5)); // Cap limit to 50
 
 // Modify query for explore page (NOT IN followed users and not self)
-$postsQuery = "SELECT posts.*, users.username, users.pfp_image_link 
+$postsQuery = "SELECT posts.*, users.username, users.pfp_image_link, users.userState 
                FROM posts 
                LEFT JOIN users ON posts.UUID = users.UUID 
                WHERE posts.UUID NOT IN ($placeholders) 

@@ -26,6 +26,9 @@ $image_id = null;
 $media_id = null;
 $youtubeEmbed = htmlspecialchars($_POST['commentLinkData'] ?? '', ENT_QUOTES, 'UTF-8');
 
+// Set to desired resolution (e.g., '720', '480', '1080')
+$thumbnailResolution = '480';
+
 $page_url = "/profile/u/" . $OG_UUID . "/post/" . $OG_PUID . "/";
 
 // Cloudflare Turnstile verification
@@ -142,7 +145,7 @@ if ($success) {
         if ($fileExtension === 'mp4') {
           $frameFileName = "frame_$PUID.jpg";
           $frameFilePath = "$postDir/$frameFileName";
-          $ffmpegCommand = "ffmpeg -i " . escapeshellarg($uploadFilePath) . " -vf 'select=eq(n\\,0)' -q:v 3 " . escapeshellarg($frameFilePath);
+          $ffmpegCommand = "ffmpeg -i " . escapeshellarg($uploadFilePath) . " -vf 'select=eq(n\\,0),scale=-1:" . $thumbnailResolution . "' -q:v 3 " . escapeshellarg($frameFilePath);
           exec($ffmpegCommand, $output, $returnVar);
 
           if ($returnVar !== 0) {

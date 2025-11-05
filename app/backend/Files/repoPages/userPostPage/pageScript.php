@@ -9,6 +9,7 @@ require $baseDir . "/connect/MainConnect.php";
 require "../../../../../backend/scripts/account/_notificationService.php";
 
 displayError();
+checkSuspendedUser($conn_main, $_SESSION['user']['UUID']);
 
 // Use this instead of the redirect for not member viewers
 if (!isset($_SESSION['user'])) {
@@ -77,11 +78,11 @@ if (!$PageAdmin && !$PostOwner) {
   $pageSuspended = false;
 }
 
-$sql = "SELECT username, pfp_image_link FROM users WHERE UUID = ?";
+$sql = "SELECT username, pfp_image_link, userState FROM users WHERE UUID = ?";
 $stmt = mysqli_prepare($conn_main, $sql);
 mysqli_stmt_bind_param($stmt, "s", $Poster_UUID);
 mysqli_stmt_execute($stmt);
-mysqli_stmt_bind_result($stmt, $poster_username, $poster_image_link);
+mysqli_stmt_bind_result($stmt, $poster_username, $poster_image_link, $poster_userState);
 mysqli_stmt_fetch($stmt);
 mysqli_stmt_close($stmt);
 

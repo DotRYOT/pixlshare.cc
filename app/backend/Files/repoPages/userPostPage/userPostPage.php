@@ -56,10 +56,12 @@ require "../../../../../backend/Files/repoPages/userPostPage/pageScript.php";
     require "../../../../../backend/_nav.php";
   }
 
-  if ($postState === "500") {
+  if ($postState === "500" || $poster_userState === 500) {
     $postStateVis = 'style="display: flex;"';
+    $postHidden = true;
   } else {
     $postStateVis = 'style="display: none;"';
+    $postHidden = false;
   }
   ?>
   <div id="postSuspended" <?= $postStateVis; ?>>
@@ -335,11 +337,12 @@ require "../../../../../backend/Files/repoPages/userPostPage/pageScript.php";
       </button>
     </div>
   </div>
-  <div class="postCard">
-    <div class="imageContainer">
-      <?php
-      if (!empty($Post_YT_Link)) {
-        echo '
+  <?php if ($postHidden === false) { ?>
+    <div class="postCard">
+      <div class="imageContainer">
+        <?php
+        if (!empty($Post_YT_Link)) {
+          echo '
         <iframe
           width="1280"
           height="720"
@@ -349,432 +352,439 @@ require "../../../../../backend/Files/repoPages/userPostPage/pageScript.php";
           referrerpolicy="strict-origin-when-cross-origin"
           allowfullscreen>
         </iframe>';
-      } else {
-        if (substr($media_id, -3) == 'mp4') {
-          ?>
-          <div class="video-wrapper">
-            <video preload="auto">
-              <source src="../../../../..<?= $media_id; ?>" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <div class="controls">
-              <button id="play-pause">
-                <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF">
-                  <path d="M320-203v-560l440 280-440 280Z" />
-                </svg>
-              </button>
-
-              <!-- Volume control group -->
-              <div class="volume-control">
-                <button id="volume">
-                  <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px"
-                    fill="#FFFFFF">
-                    <path
-                      d="M560-131v-62q97-28 158.5-107.5T780-481q0-101-61-181T560-769v-62q124 28 202 125.5T840-481q0 127-78 224.5T560-131ZM120-360v-240h160l200-200v640L280-360H120Zm420 48v-337q55 17 87.5 64T660-480q0 57-33 104t-87 64ZM420-648 307-540H180v120h127l113 109v-337Zm-94 168Z" />
+        } else {
+          if (substr($media_id, -3) == 'mp4') {
+            ?>
+            <div class="video-wrapper">
+              <video preload="auto">
+                <source src="../../../../..<?= $media_id; ?>" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <div class="controls">
+                <button id="play-pause">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF">
+                    <path d="M320-203v-560l440 280-440 280Z" />
                   </svg>
                 </button>
-                <div class="volume-slider">
-                  <input type="range" min="0" max="1" step="0.05" value="1">
-                </div>
-              </div>
 
-              <div class="progress-bar">
-                <div class="buffer-bar"></div>
+                <!-- Volume control group -->
+                <div class="volume-control">
+                  <button id="volume">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px"
+                      fill="#FFFFFF">
+                      <path
+                        d="M560-131v-62q97-28 158.5-107.5T780-481q0-101-61-181T560-769v-62q124 28 202 125.5T840-481q0 127-78 224.5T560-131ZM120-360v-240h160l200-200v640L280-360H120Zm420 48v-337q55 17 87.5 64T660-480q0 57-33 104t-87 64ZM420-648 307-540H180v120h127l113 109v-337Zm-94 168Z" />
+                    </svg>
+                  </button>
+                  <div class="volume-slider">
+                    <input type="range" min="0" max="1" step="0.05" value="1">
+                  </div>
+                </div>
+
+                <div class="progress-bar">
+                  <div class="buffer-bar"></div>
+                </div>
+                <button id="fullscreen">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF">
+                    <path
+                      d="M120-120v-193h60v133h133v60H120Zm527 0v-60h133v-133h60v193H647ZM120-647v-193h193v60H180v133h-60Zm660 0v-133H647v-60h193v193h-60Z" />
+                  </svg>
+                </button>
               </div>
-              <button id="fullscreen">
-                <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF">
-                  <path
-                    d="M120-120v-193h60v133h133v60H120Zm527 0v-60h133v-133h60v193H647ZM120-647v-193h193v60H180v133h-60Zm660 0v-133H647v-60h193v193h-60Z" />
-                </svg>
-              </button>
             </div>
-          </div>
-          <?php
-        } else {
-          echo '<img onclick="showImage(\'' . $media_id . '\');" src="../../../../..' . $media_id . '" alt="">';
+            <?php
+          } else {
+            echo '<img onclick="showImage(\'' . $media_id . '\');" src="../../../../..' . $media_id . '" alt="">';
+          }
         }
-      }
-      ?>
-    </div>
-    <!-- <div class="line"></div> -->
-    <section class="mainPostBody" id="mainPostBody">
-      <div class="contentContainer">
-        <div class="profileLink">
-          <a href="<?= filePath("/profile/u/") . $UUID; ?>">
-            <img src="<?= filePath("/") . $poster_image_link; ?>" alt="">
-            <p><?= $poster_username; ?></p>
-          </a>
-        </div>
-        <div class="textContainer">
-          <p><?= nl2br(htmlspecialchars($content)); ?></p>
-        </div>
+        ?>
       </div>
       <!-- <div class="line"></div> -->
-      <div class="toolBar">
-        <div class="leftToolBar">
-          <button id="mainPostLikeButton" type="button" name="like" data-puid="<?= $PUID; ?>">
-            <svg xmlns="http://www.w3.org/2000/svg" class="heart-outline-icon" height="48px" viewBox="0 -960 960 960"
-              width="48px" fill="#FFFFFF">
-              <path
-                d="m480-121-41-37q-105.77-97.12-174.88-167.56Q195-396 154-451.5T96.5-552Q80-597 80-643q0-90.15 60.5-150.58Q201-854 290-854q57 0 105.5 27t84.5 78q42-54 89-79.5T670-854q89 0 149.5 60.42Q880-733.15 880-643q0 46-16.5 91T806-451.5Q765-396 695.88-325.56 626.77-255.12 521-158l-41 37Zm0-79q101.24-93 166.62-159.5Q712-426 750.5-476t54-89.14q15.5-39.13 15.5-77.72 0-66.14-42-108.64T670.22-794q-51.52 0-95.37 31.5T504-674h-49q-26-56-69.85-88-43.85-32-95.37-32Q224-794 182-751.5t-42 108.82q0 38.68 15.5 78.18 15.5 39.5 54 90T314-358q66 66 166 158Zm0-297Z" />
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" class="heart-icon" style="display: none;" height="48px"
-              viewBox="0 -960 960 960" width="48px" fill="#ff0000ff">
-              <path
-                d="m480-121-41-37q-106-97-175-167.5t-110-126Q113-507 96.5-552T80-643q0-90 60.5-150.5T290-854q57 0 105.5 27t84.5 78q42-54 89-79.5T670-854q89 0 149.5 60.5T880-643q0 46-16.5 91T806-451.5q-41 55.5-110 126T521-158l-41 37Z" />
-            </svg>
-            <span class="like-count">0</span>
-          </button>
-          <!-- <button type="button" name="re-post">
+      <section class="mainPostBody" id="mainPostBody">
+        <div class="contentContainer">
+          <div class="profileLink">
+            <a href="<?= filePath("/profile/u/") . $UUID; ?>">
+              <img src="<?= filePath("/") . $poster_image_link; ?>" alt="">
+              <p><?= $poster_username; ?></p>
+            </a>
+          </div>
+          <div class="textContainer">
+            <p><?= nl2br(htmlspecialchars($content)); ?></p>
+          </div>
+        </div>
+        <!-- <div class="line"></div> -->
+        <div class="toolBar">
+          <div class="leftToolBar">
+            <button id="mainPostLikeButton" type="button" name="like" data-puid="<?= $PUID; ?>">
+              <svg xmlns="http://www.w3.org/2000/svg" class="heart-outline-icon" height="48px" viewBox="0 -960 960 960"
+                width="48px" fill="#FFFFFF">
+                <path
+                  d="m480-121-41-37q-105.77-97.12-174.88-167.56Q195-396 154-451.5T96.5-552Q80-597 80-643q0-90.15 60.5-150.58Q201-854 290-854q57 0 105.5 27t84.5 78q42-54 89-79.5T670-854q89 0 149.5 60.42Q880-733.15 880-643q0 46-16.5 91T806-451.5Q765-396 695.88-325.56 626.77-255.12 521-158l-41 37Zm0-79q101.24-93 166.62-159.5Q712-426 750.5-476t54-89.14q15.5-39.13 15.5-77.72 0-66.14-42-108.64T670.22-794q-51.52 0-95.37 31.5T504-674h-49q-26-56-69.85-88-43.85-32-95.37-32Q224-794 182-751.5t-42 108.82q0 38.68 15.5 78.18 15.5 39.5 54 90T314-358q66 66 166 158Zm0-297Z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="heart-icon" style="display: none;" height="48px"
+                viewBox="0 -960 960 960" width="48px" fill="#ff0000ff">
+                <path
+                  d="m480-121-41-37q-106-97-175-167.5t-110-126Q113-507 96.5-552T80-643q0-90 60.5-150.5T290-854q57 0 105.5 27t84.5 78q42-54 89-79.5T670-854q89 0 149.5 60.5T880-643q0 46-16.5 91T806-451.5q-41 55.5-110 126T521-158l-41 37Z" />
+              </svg>
+              <span class="like-count">0</span>
+            </button>
+            <!-- <button type="button" name="re-post">
             <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF">
               <path
                 d="M280-80 120-240l160-160 42 44-86 86h464v-160h60v220H236l86 86-42 44Zm-80-450v-220h524l-86-86 42-44 160 160-160 160-42-44 86-86H260v160h-60Z" />
             </svg>
             <span style="margin-left: .25rem;">0</span>
           </button> -->
+          </div>
+          <div class="rightToolBar">
+            <button type="button" name="bookmarkButton">
+              <svg xmlns="http://www.w3.org/2000/svg" class="bookmark-outline-icon" height="48px" viewBox="0 -960 960 960"
+                width="48px" fill="#FFFFFF">
+                <path d="M200-120v-725h560v725L480-240 200-120Zm60-91 220-93 220 93v-574H260v574Zm0-574h440-440Z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="bookmark-icon" height="48px" viewBox="0 -960 960 960"
+                width="48px" fill="#FFFFFF" style="display: none;">
+                <path d="M200-120v-725h560v725L480-240 200-120Z" />
+              </svg>
+            </button>
+            <button type="button" name="moreMenu" onclick="ToggleMoreMenu()">
+              <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF">
+                <path
+                  d="M479.86-160Q460-160 446-174.14t-14-34Q432-228 446.14-242t34-14Q500-256 514-241.86t14 34Q528-188 513.86-174t-34 14Zm0-272Q460-432 446-446.14t-14-34Q432-500 446.14-514t34-14Q500-528 514-513.86t14 34Q528-460 513.86-446t-34 14Zm0-272Q460-704 446-718.14t-14-34Q432-772 446.14-786t34-14Q500-800 514-785.86t14 34Q528-732 513.86-718t-34 14Z" />
+              </svg>
+            </button>
+          </div>
         </div>
-        <div class="rightToolBar">
-          <button type="button" name="bookmarkButton">
-            <svg xmlns="http://www.w3.org/2000/svg" class="bookmark-outline-icon" height="48px" viewBox="0 -960 960 960"
-              width="48px" fill="#FFFFFF">
-              <path d="M200-120v-725h560v725L480-240 200-120Zm60-91 220-93 220 93v-574H260v574Zm0-574h440-440Z" />
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" class="bookmark-icon" height="48px" viewBox="0 -960 960 960"
-              width="48px" fill="#FFFFFF" style="display: none;">
-              <path d="M200-120v-725h560v725L480-240 200-120Z" />
-            </svg>
-          </button>
-          <button type="button" name="moreMenu" onclick="ToggleMoreMenu()">
-            <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF">
-              <path
-                d="M479.86-160Q460-160 446-174.14t-14-34Q432-228 446.14-242t34-14Q500-256 514-241.86t14 34Q528-188 513.86-174t-34 14Zm0-272Q460-432 446-446.14t-14-34Q432-500 446.14-514t34-14Q500-528 514-513.86t14 34Q528-460 513.86-446t-34 14Zm0-272Q460-704 446-718.14t-14-34Q432-772 446.14-786t34-14Q500-800 514-785.86t14 34Q528-732 513.86-718t-34 14Z" />
-            </svg>
-          </button>
-        </div>
-      </div>
-    </section>
-    <?php if ($PostOwner === true || $PageAdmin === true) { ?>
-      <section class="EditPostContainer" id="EditPostContainer" style="display: none;">
-        <form action="<?= filePath("/backend/api/"); ?>_editPostOptions.php" method="post">
-          <script>
-            fetch('<?= filePath("/backend/json/"); ?>CategoryOptions.json')
+      </section>
+      <?php if ($PostOwner === true || $PageAdmin === true) { ?>
+        <section class="EditPostContainer" id="EditPostContainer" style="display: none;">
+          <form action="<?= filePath("/backend/api/"); ?>_editPostOptions.php" method="post">
+            <script>
+              fetch('<?= filePath("/backend/json/"); ?>CategoryOptions.json')
+                .then(response => response.json())
+                .then(data => {
+                  const selectElement = document.getElementById('PostTextFilterOptions');
+                  data.forEach(option => {
+                    const opt = document.createElement('option');
+                    opt.value = option.value;
+                    opt.textContent = option.text;
+                    selectElement.appendChild(opt);
+                  });
+                })
+                .catch(error => console.error('Error fetching the JSON:', error));
+            </script>
+            <select name="PostTextFilterOptions" id="PostTextFilterOptions"></select>
+            <textarea name="postText" id="postText"><?= $content; ?></textarea>
+            <input type="hidden" name="PUID" value="<?= $PUID; ?>">
+            <input type="hidden" name="PosterUUID" value="<?= $PosterUUID; ?>">
+            <button type="submit" name="editPost">
+              <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF">
+                <path
+                  d="M560-80v-123l263-262 122 122L683-80H560Zm300-263-37-37 37 37ZM620-140h38l121-122-18-19-19-18-122 121v38ZM160-80v-800h400l240 240v116h-60v-76H520v-220H220v680h280v60H160Zm350-400Zm251 199-19-18 37 37-18-19Z" />
+              </svg>
+              <span>Edit</span>
+            </button>
+          </form>
+        </section>
+      <?php } ?>
+      <script>
+        function ToggleMoreMenu() {
+          const moreMenu = document.getElementById("moreMenu");
+          const body = document.body;
+          if (moreMenu.style.display === 'none' || moreMenu.style.display === '') {
+            moreMenu.style.display = 'flex';
+            body.classList.add('scrollOff');
+          } else {
+            moreMenu.style.display = 'none';
+            body.classList.remove('scrollOff');
+          }
+        }
+        function ToggleReportForm() {
+          const ReportForm = document.getElementById("reportPostForm");
+          if (ReportForm.style.display === 'none' || ReportForm.style.display === '') {
+            ReportForm.style.display = 'flex';
+          } else {
+            ReportForm.style.display = 'none';
+          }
+        }
+        <?php if ($PostOwner === true || $PageAdmin === true) { ?>
+
+          function PostEdit() {
+            document.getElementById("moreMenu").style.display = 'none';
+            document.getElementById("mainPostBody").style.display = 'none';
+            document.getElementById("EditPostContainer").style.display = 'flex';
+          }
+
+          const deleteButton = document.querySelector('button[name="Delete"]');
+          if (deleteButton) {
+            deleteButton.addEventListener('click', function () {
+              if (confirm('Are you sure you want to delete this post?')) {
+                fetch(`../../../../../backend/api/_deletePost.php?PUID=<?= $PUID; ?>`, {
+                  method: 'POST'
+                })
+                  .then(response => response.text())
+                  .then(data => {
+                    if (data.includes('success')) {
+                      alert('Post deleted successfully');
+                      window.location.href = '<?= filePath("/profile/u/") . $UUID; ?>';
+                    } else {
+                      alert('Error deleting post: ' + data);
+                    }
+                  })
+                  .catch(error => console.error('Error deleting post:', error));
+              }
+            });
+          }
+        <?php } ?>
+        const reportForm = document.getElementById('reportPostForm');
+        if (reportForm) {
+          reportForm.addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevent default form submission
+
+            const reason = document.querySelector('#reportReason').value;
+            const extraInfo = document.querySelector('textarea[name="extraInfo"]').value;
+
+            fetch('../../../../../backend/scripts/admin/_reportPost.php?PUID=<?= $PUID; ?>', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+              },
+              body: new URLSearchParams({
+                reason: reason,
+                extraInfo: extraInfo
+              })
+            })
+              .then(response => response.text())
+              .then(data => {
+                if (data.includes('successfully')) {
+                  alert('Post reported successfully');
+                  ToggleMoreMenu();
+                } else {
+                  alert('Error reporting post: ' + data);
+                  ToggleMoreMenu();
+                }
+              })
+              .catch(error => {
+                console.error('Error reporting post:', error);
+                alert('Failed to send report. Please try again.');
+              });
+          });
+        }
+        // Share button logic
+        function shareCopyButton() {
+          var copyText = document.getElementById("copyInput");
+          copyText.select();
+          copyText.setSelectionRange(0, 99999);
+          document.execCommand("copy");
+
+          alert("URL copied: " + copyText.value);
+        }
+
+        // Like Script
+
+        document.addEventListener("DOMContentLoaded", function () {
+          const likeButton = document.getElementById("mainPostLikeButton");
+          if (likeButton) {
+            const puid = likeButton.getAttribute("data-puid");
+            if (puid) {
+              checkLikeStatus(puid, likeButton);
+              const statusInterval = setInterval(() => {
+                checkLikeStatus(puid, likeButton);
+              }, 10000);
+
+            } else {
+              console.warn("PUID not found on the main like button.");
+            }
+          } else {
+            console.warn("Main like button not found on page.");
+          }
+        });
+
+        function checkLikeStatus(puid, button) {
+          if (!puid) {
+            console.error("PUID is undefined or empty in checkLikeStatus");
+            return;
+          }
+          fetch(`<?= filePath("/backend/api/_checkLikeStatus.php"); ?>?PUID=${puid}`)
+            .then(response => {
+              if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+              }
+              return response.json();
+            })
+            .then(data => {
+              const isLiked = data.liked;
+              const count = data.count;
+              updateLikeUI(isLiked, count);
+
+            })
+            .catch(error => {
+              console.error("Error fetching like status for PUID", puid, ":", error);
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+          document.querySelectorAll('.commentCard .commentLikeButton').forEach(button => {
+            const puid = button.closest('.commentCard')?.id?.replace('comment-', '');
+            if (puid) checkLikeStatus(puid, button);
+          });
+        });
+
+        function updateLikeUI(isLiked, count) {
+          const button = document.querySelector(`button[name="like"][data-puid="${PUID}"]`);
+          if (!button) {
+            console.error("Main like button for PUID", PUID, "not found.");
+            return;
+          }
+
+          const heartOutlineIcon = button.querySelector('.heart-outline-icon');
+          const heartIcon = button.querySelector('.heart-icon');
+          const likeCountSpan = button.querySelector('.like-count');
+
+          if (heartOutlineIcon && heartIcon && likeCountSpan) {
+            if (isLiked) {
+              heartOutlineIcon.style.display = 'none';
+              heartIcon.style.display = 'block';
+              heartIcon.style.fill = '#ff0000ff';
+            } else {
+              heartOutlineIcon.style.display = 'block';
+              heartIcon.style.display = 'none';
+            }
+            likeCountSpan.textContent = count;
+          } else {
+            console.warn("Like UI elements (SVG icons or count span) not found for button with PUID:", PUID);
+          }
+        }
+
+        const PUID = "<?= $PUID ?>"; // Get PUID from PHP
+        const likeButton = document.querySelector('button[name="like"][data-puid="' + PUID + '"]'); // Select the specific button
+
+        if (likeButton) {
+          likeButton.addEventListener('click', function () {
+            const currentHeartIcon = likeButton.querySelector('.heart-icon');
+            const currentHeartOutlineIcon = likeButton.querySelector('.heart-outline-icon');
+            const currentIsLiked = currentHeartIcon && window.getComputedStyle(currentHeartIcon).display !== 'none';
+            const newLikeStatus = !currentIsLiked;
+            const currentCountSpan = likeButton.querySelector('.like-count');
+            let currentCount = parseInt(currentCountSpan.textContent) || 0;
+
+            // Send the request to the backend
+            fetch(`<?= filePath("/backend/api/"); ?>_likePost.php?PUID=${PUID}&action=${newLikeStatus ? 'like' : 'unlike'}`)
+              .then(response => response.text())
+              .then(data => {
+                if (data.includes("Rate limit exceeded")) {
+                  alert(data);
+                } else {
+                  checkLikeStatus(PUID, likeButton);
+                }
+              })
+              .catch(error => {
+                console.error('Error liking/unliking post:', error);
+                Toastify({
+                  text: 'An error occurred while updating the like status. Please try again.',
+                  duration: 3000,
+                  gravity: "top",
+                  position: "right",
+                  style: {
+                    background: "#f44336" // Red color for error
+                  }
+                }).showToast();
+              });
+          });
+        } else {
+          console.warn("Main like button not found for attaching click handler.");
+        }
+
+        // Bookmark scripts
+
+        function updateBookmarkUI(isBookmarked) {
+          const bookmarkButton = document.querySelector('button[name="bookmarkButton"]');
+          if (!bookmarkButton) {
+            console.error("Bookmark button not found.");
+            return;
+          }
+
+          const bookmarkOutlineIcon = bookmarkButton.querySelector('.bookmark-outline-icon');
+          const bookmarkIcon = bookmarkButton.querySelector('.bookmark-icon');
+
+          if (bookmarkOutlineIcon && bookmarkIcon) {
+            if (isBookmarked) {
+              bookmarkOutlineIcon.style.display = 'none';
+              bookmarkIcon.style.display = 'block';
+              bookmarkIcon.style.fill = '#007eaf';
+            } else {
+              bookmarkOutlineIcon.style.display = 'block';
+              bookmarkIcon.style.display = 'none';
+            }
+          } else {
+            console.warn("Bookmark UI elements (SVG icons) not found inside the bookmark button.");
+          }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+          checkBookmarkStatus(); // Check status on initial page load
+        });
+
+        function checkBookmarkStatus() {
+          fetch(`../../../../../backend/api/_bookmarkCheck.php?PUID=<?= $PUID; ?>`)
+            .then(response => {
+              if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+              }
+              return response.json();
+            })
+            .then(data => {
+              const isBookmarked = data.status === 'bookmarked';
+              updateBookmarkUI(isBookmarked); // Update UI based on fetched status
+            })
+            .catch(error => console.error('Error checking bookmark status:', error));
+        }
+
+        const bookmarkButton = document.querySelector('button[name="bookmarkButton"]');
+        if (bookmarkButton) {
+          bookmarkButton.addEventListener('click', function () {
+            const currentBookmarkIcon = bookmarkButton.querySelector('.bookmark-icon');
+            const currentIsBookmarked = currentBookmarkIcon && window.getComputedStyle(currentBookmarkIcon).display !== 'none';
+            const newBookmarkStatus = !currentIsBookmarked;
+            fetch(`../../../../../backend/api/_bookmarkPost.php?action=${newBookmarkStatus ? 'bookmark' : 'unbookmark'}&PUID=<?= $PUID; ?>`)
               .then(response => response.json())
               .then(data => {
-                const selectElement = document.getElementById('PostTextFilterOptions');
-                data.forEach(option => {
-                  const opt = document.createElement('option');
-                  opt.value = option.value;
-                  opt.textContent = option.text;
-                  selectElement.appendChild(opt);
-                });
+                if (data.error && data.error.includes("Rate limit exceeded")) {
+                  alert(data.error);
+                } else if (data.message) {
+                  checkBookmarkStatus();
+                } else {
+                  console.error("Unexpected response format from bookmark action:", data);
+                  checkBookmarkStatus();
+                }
               })
-              .catch(error => console.error('Error fetching the JSON:', error));
-          </script>
-          <select name="PostTextFilterOptions" id="PostTextFilterOptions"></select>
-          <textarea name="postText" id="postText"><?= $content; ?></textarea>
-          <input type="hidden" name="PUID" value="<?= $PUID; ?>">
-          <input type="hidden" name="PosterUUID" value="<?= $PosterUUID; ?>">
-          <button type="submit" name="editPost">
-            <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF">
-              <path
-                d="M560-80v-123l263-262 122 122L683-80H560Zm300-263-37-37 37 37ZM620-140h38l121-122-18-19-19-18-122 121v38ZM160-80v-800h400l240 240v116h-60v-76H520v-220H220v680h280v60H160Zm350-400Zm251 199-19-18 37 37-18-19Z" />
-            </svg>
-            <span>Edit</span>
-          </button>
-        </form>
-      </section>
-    <?php } ?>
-    <script>
-      function ToggleMoreMenu() {
-        const moreMenu = document.getElementById("moreMenu");
-        const body = document.body;
-        if (moreMenu.style.display === 'none' || moreMenu.style.display === '') {
-          moreMenu.style.display = 'flex';
-          body.classList.add('scrollOff');
-        } else {
-          moreMenu.style.display = 'none';
-          body.classList.remove('scrollOff');
-        }
-      }
-      function ToggleReportForm() {
-        const ReportForm = document.getElementById("reportPostForm");
-        if (ReportForm.style.display === 'none' || ReportForm.style.display === '') {
-          ReportForm.style.display = 'flex';
-        } else {
-          ReportForm.style.display = 'none';
-        }
-      }
-      <?php if ($PostOwner === true || $PageAdmin === true) { ?>
-
-        function PostEdit() {
-          document.getElementById("moreMenu").style.display = 'none';
-          document.getElementById("mainPostBody").style.display = 'none';
-          document.getElementById("EditPostContainer").style.display = 'flex';
-        }
-
-        const deleteButton = document.querySelector('button[name="Delete"]');
-        if (deleteButton) {
-          deleteButton.addEventListener('click', function () {
-            if (confirm('Are you sure you want to delete this post?')) {
-              fetch(`../../../../../backend/api/_deletePost.php?PUID=<?= $PUID; ?>`, {
-                method: 'POST'
-              })
-                .then(response => response.text())
-                .then(data => {
-                  if (data.includes('success')) {
-                    alert('Post deleted successfully');
-                    window.location.href = '<?= filePath("/profile/u/") . $UUID; ?>';
-                  } else {
-                    alert('Error deleting post: ' + data);
+              .catch(error => {
+                console.error('Error bookmarking/unbookmarking post:', error);
+                Toastify({
+                  text: 'An error occurred while updating the bookmark status. Please try again.',
+                  duration: 3000,
+                  gravity: "top",
+                  position: "right",
+                  style: {
+                    background: "#f44336"
                   }
-                })
-                .catch(error => console.error('Error deleting post:', error));
-            }
+                }).showToast();
+              });
           });
-        }
-      <?php } ?>
-      const reportForm = document.getElementById('reportPostForm');
-      if (reportForm) {
-        reportForm.addEventListener('submit', function (e) {
-          e.preventDefault(); // Prevent default form submission
-
-          const reason = document.querySelector('#reportReason').value;
-          const extraInfo = document.querySelector('textarea[name="extraInfo"]').value;
-
-          fetch('../../../../../backend/scripts/admin/_reportPost.php?PUID=<?= $PUID; ?>', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: new URLSearchParams({
-              reason: reason,
-              extraInfo: extraInfo
-            })
-          })
-            .then(response => response.text())
-            .then(data => {
-              if (data.includes('successfully')) {
-                alert('Post reported successfully');
-                ToggleMoreMenu();
-              } else {
-                alert('Error reporting post: ' + data);
-                ToggleMoreMenu();
-              }
-            })
-            .catch(error => {
-              console.error('Error reporting post:', error);
-              alert('Failed to send report. Please try again.');
-            });
-        });
-      }
-      // Share button logic
-      function shareCopyButton() {
-        var copyText = document.getElementById("copyInput");
-        copyText.select();
-        copyText.setSelectionRange(0, 99999);
-        document.execCommand("copy");
-
-        alert("URL copied: " + copyText.value);
-      }
-
-      // Like Script
-
-      document.addEventListener("DOMContentLoaded", function () {
-        const likeButton = document.getElementById("mainPostLikeButton");
-        if (likeButton) {
-          const puid = likeButton.getAttribute("data-puid");
-          if (puid) {
-            checkLikeStatus(puid, likeButton);
-            const statusInterval = setInterval(() => {
-              checkLikeStatus(puid, likeButton);
-            }, 10000);
-
-          } else {
-            console.warn("PUID not found on the main like button.");
-          }
         } else {
-          console.warn("Main like button not found on page.");
+          console.warn("Bookmark button not found for attaching click handler.");
         }
-      });
-
-      function checkLikeStatus(puid, button) {
-        if (!puid) {
-          console.error("PUID is undefined or empty in checkLikeStatus");
-          return;
-        }
-        fetch(`<?= filePath("/backend/api/_checkLikeStatus.php"); ?>?PUID=${puid}`)
-          .then(response => {
-            if (!response.ok) {
-              throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-          })
-          .then(data => {
-            const isLiked = data.liked;
-            const count = data.count;
-            updateLikeUI(isLiked, count);
-
-          })
-          .catch(error => {
-            console.error("Error fetching like status for PUID", puid, ":", error);
-          });
-      }
-
-      document.addEventListener("DOMContentLoaded", () => {
-        document.querySelectorAll('.commentCard .commentLikeButton').forEach(button => {
-          const puid = button.closest('.commentCard')?.id?.replace('comment-', '');
-          if (puid) checkLikeStatus(puid, button);
-        });
-      });
-
-      function updateLikeUI(isLiked, count) {
-        const button = document.querySelector(`button[name="like"][data-puid="${PUID}"]`);
-        if (!button) {
-          console.error("Main like button for PUID", PUID, "not found.");
-          return;
-        }
-
-        const heartOutlineIcon = button.querySelector('.heart-outline-icon');
-        const heartIcon = button.querySelector('.heart-icon');
-        const likeCountSpan = button.querySelector('.like-count');
-
-        if (heartOutlineIcon && heartIcon && likeCountSpan) {
-          if (isLiked) {
-            heartOutlineIcon.style.display = 'none';
-            heartIcon.style.display = 'block';
-            heartIcon.style.fill = '#ff0000ff';
-          } else {
-            heartOutlineIcon.style.display = 'block';
-            heartIcon.style.display = 'none';
-          }
-          likeCountSpan.textContent = count;
-        } else {
-          console.warn("Like UI elements (SVG icons or count span) not found for button with PUID:", PUID);
-        }
-      }
-
-      const PUID = "<?= $PUID ?>"; // Get PUID from PHP
-      const likeButton = document.querySelector('button[name="like"][data-puid="' + PUID + '"]'); // Select the specific button
-
-      if (likeButton) {
-        likeButton.addEventListener('click', function () {
-          const currentHeartIcon = likeButton.querySelector('.heart-icon');
-          const currentHeartOutlineIcon = likeButton.querySelector('.heart-outline-icon');
-          const currentIsLiked = currentHeartIcon && window.getComputedStyle(currentHeartIcon).display !== 'none';
-          const newLikeStatus = !currentIsLiked;
-          const currentCountSpan = likeButton.querySelector('.like-count');
-          let currentCount = parseInt(currentCountSpan.textContent) || 0;
-
-          // Send the request to the backend
-          fetch(`<?= filePath("/backend/api/"); ?>_likePost.php?PUID=${PUID}&action=${newLikeStatus ? 'like' : 'unlike'}`)
-            .then(response => response.text())
-            .then(data => {
-              if (data.includes("Rate limit exceeded")) {
-                alert(data);
-              } else {
-                checkLikeStatus(PUID, likeButton);
-              }
-            })
-            .catch(error => {
-              console.error('Error liking/unliking post:', error);
-              Toastify({
-                text: 'An error occurred while updating the like status. Please try again.',
-                duration: 3000,
-                gravity: "top",
-                position: "right",
-                style: {
-                  background: "#f44336" // Red color for error
-                }
-              }).showToast();
-            });
-        });
-      } else {
-        console.warn("Main like button not found for attaching click handler.");
-      }
-
-      // Bookmark scripts
-
-      function updateBookmarkUI(isBookmarked) {
-        const bookmarkButton = document.querySelector('button[name="bookmarkButton"]');
-        if (!bookmarkButton) {
-          console.error("Bookmark button not found.");
-          return;
-        }
-
-        const bookmarkOutlineIcon = bookmarkButton.querySelector('.bookmark-outline-icon');
-        const bookmarkIcon = bookmarkButton.querySelector('.bookmark-icon');
-
-        if (bookmarkOutlineIcon && bookmarkIcon) {
-          if (isBookmarked) {
-            bookmarkOutlineIcon.style.display = 'none';
-            bookmarkIcon.style.display = 'block';
-            bookmarkIcon.style.fill = '#007eaf';
-          } else {
-            bookmarkOutlineIcon.style.display = 'block';
-            bookmarkIcon.style.display = 'none';
-          }
-        } else {
-          console.warn("Bookmark UI elements (SVG icons) not found inside the bookmark button.");
-        }
-      }
-
-      document.addEventListener('DOMContentLoaded', function () {
-        checkBookmarkStatus(); // Check status on initial page load
-      });
-
-      function checkBookmarkStatus() {
-        fetch(`../../../../../backend/api/_bookmarkCheck.php?PUID=<?= $PUID; ?>`)
-          .then(response => {
-            if (!response.ok) {
-              throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-          })
-          .then(data => {
-            const isBookmarked = data.status === 'bookmarked';
-            updateBookmarkUI(isBookmarked); // Update UI based on fetched status
-          })
-          .catch(error => console.error('Error checking bookmark status:', error));
-      }
-
-      const bookmarkButton = document.querySelector('button[name="bookmarkButton"]');
-      if (bookmarkButton) {
-        bookmarkButton.addEventListener('click', function () {
-          const currentBookmarkIcon = bookmarkButton.querySelector('.bookmark-icon');
-          const currentIsBookmarked = currentBookmarkIcon && window.getComputedStyle(currentBookmarkIcon).display !== 'none';
-          const newBookmarkStatus = !currentIsBookmarked;
-          fetch(`../../../../../backend/api/_bookmarkPost.php?action=${newBookmarkStatus ? 'bookmark' : 'unbookmark'}&PUID=<?= $PUID; ?>`)
-            .then(response => response.json())
-            .then(data => {
-              if (data.error && data.error.includes("Rate limit exceeded")) {
-                alert(data.error);
-              } else if (data.message) {
-                checkBookmarkStatus();
-              } else {
-                console.error("Unexpected response format from bookmark action:", data);
-                checkBookmarkStatus();
-              }
-            })
-            .catch(error => {
-              console.error('Error bookmarking/unbookmarking post:', error);
-              Toastify({
-                text: 'An error occurred while updating the bookmark status. Please try again.',
-                duration: 3000,
-                gravity: "top",
-                position: "right",
-                style: {
-                  background: "#f44336"
-                }
-              }).showToast();
-            });
-        });
-      } else {
-        console.warn("Bookmark button not found for attaching click handler.");
-      }
-    </script>
-  </div>
+      </script>
+    </div>
+  <?php } else { ?>
+    <div class="postHiddenNotice">
+      <h2>This post is hidden.</h2>
+      <p>The content of this post is not available.</p>
+    </div>
+  <?php } ?>
   <div id="imageModal" class="modal" style="display:none;">
-    <svg class="close" onclick="closeModal()" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF">
+    <svg class="close" onclick="closeModal()" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960"
+      width="48px" fill="#FFFFFF">
       <path d="m249-207-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z" />
     </svg>
     <img class="modal-content" id="modalImage">

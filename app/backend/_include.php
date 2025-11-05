@@ -295,3 +295,20 @@ function logLoginAttempt($username, $status)
     error_log("Failed to log login attempt: " . $e->getMessage());
   }
 }
+
+// Always run suspended user check
+function checkSuspendedUser($conn_main, $UUID)
+{
+  $sql = "SELECT userState FROM users WHERE UUID = ?";
+  $stmt = mysqli_prepare($conn_main, $sql);
+  mysqli_stmt_bind_param($stmt, "s", $UUID);
+  mysqli_stmt_execute($stmt);
+  mysqli_stmt_bind_result($stmt, $userState);
+  mysqli_stmt_fetch($stmt);
+  mysqli_stmt_close($stmt);
+
+  if ($userState === 500) {
+    echo "Your account has been suspended. Please contact support for more information.";
+    exit;
+  }
+}

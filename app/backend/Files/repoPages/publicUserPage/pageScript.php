@@ -8,6 +8,7 @@ require $baseDir . "/_auth.php";
 require $baseDir . "/connect/MainConnect.php";
 
 displayError();
+checkSuspendedUser($conn_main, $_SESSION['user']['UUID']);
 
 // Use this instead of the redirect for not member viewers
 if (!isset($_SESSION['user'])) {
@@ -40,6 +41,14 @@ $userLevel = isset($UserdataArray['userLevel']) ? $UserdataArray['userLevel'] : 
 $userState = isset($UserdataArray['userState']) ? $UserdataArray['userState'] : null;
 $isOver18 = isset($UserdataArray['is_over_18']) ? $UserdataArray['is_over_18'] : null;
 
+$sql = "SELECT userState FROM users WHERE UUID = ?";
+$stmt = mysqli_prepare($conn_main, $sql);
+mysqli_stmt_bind_param($stmt, "s", $HostUUID);
+mysqli_stmt_execute($stmt);
+mysqli_stmt_bind_result($stmt, $poster_userState);
+mysqli_stmt_fetch($stmt);
+mysqli_stmt_close($stmt);
+
 if (empty($profile_PFPImageLink)) {
   $profile_PFPImageLink = filePath("/assets/logos/") . $defaultImage;
 } else {
@@ -70,4 +79,19 @@ if (isset($_SESSION['user']['UUID'])) {
   } else {
     $PFPImageLink = filePath("/") . $ViewdataArray['pfp_image_link'];
   }
+}
+
+
+// Owner/Admin Check
+
+if ($HostUUID === $_SESSION['user']['UUID']) {
+  $PostOwner = true;
+} else {
+  $PostOwner = false;
+}
+
+if ($_SESSION['user']['userLevel'] === 1) {
+  $PageAdmin = true;
+} else {
+  $PageAdmin = false;
 }

@@ -22,6 +22,9 @@ $image_id = "null";
 $media_id = "null";
 $youtubeEmbed = htmlspecialchars($_POST['linkData']);
 
+// Set to desired resolution (e.g., '720', '480', '1080')
+$thumbnailResolution = '480';
+
 // Cloudflare Turnstile verification
 if ($_SERVER['HTTP_HOST'] == 'pixlshare.cc') {
   require "../../connect/_cloudFlareAPI.php";
@@ -66,20 +69,16 @@ if ($userState == 500) {
   redirectTo("/home/$Error");
 }
 
-// Validate post content
-// if (empty($postBody)) {
-//   $Error = generateErrorUrl("Bad Data!");
-//   echo $Error;
-//   // exit;
-//   redirectTo("/account/signin/$Error");
-// }
-
 // Validate atleast one of post body or media is present
 if (empty($postBody) && empty($_FILES['images']['name'])) {
   $Error = generateErrorUrl("Post cannot be empty!");
   echo $Error;
   // exit;
   redirectTo("/home/$Error");
+}
+
+if (empty($postBody)) {
+  $postBody = "[Video/Image Post]";
 }
 
 if (strlen($postBody) > 800) {
@@ -180,17 +179,16 @@ if ($success) {
             $webpThumbName = "frame_$PUID.webp";
             $webpThumbPath = $uploadDir . $webpThumbName;
 
-            // Approach 1: Direct WebP generation
-            $ffmpegCommand1 = "ffmpeg -i " . escapeshellarg($uploadFilePath) . " -vf 'select=eq(n\\,0)' -q:v 3 -f webp " . escapeshellarg($webpThumbPath);
+            $ffmpegCommand1 = "ffmpeg -i " . escapeshellarg($uploadFilePath) . " -vf 'select=eq(n\\,0),scale=-1:" . $thumbnailResolution . "' -q:v 3 -f webp " . escapeshellarg($webpThumbPath);
             exec($ffmpegCommand1 . " 2>&1", $output1, $returnVar1);
 
             if ($returnVar1 === 0 && file_exists($webpThumbPath)) {
               $image_id = "/profile/u/{$UUID}/post/{$PUID}/" . $webpThumbName;
             } else {
-              // Approach 2: Generate JPG then convert to WebP
+              // Approach 2: Generate JPG then convert to WebP with resolution scaling
               $tempThumbName = "frame_$PUID.jpg";
               $tempThumbPath = $uploadDir . $tempThumbName;
-              $ffmpegCommand2 = "ffmpeg -i " . escapeshellarg($uploadFilePath) . " -vf 'select=eq(n\\,0)' -q:v 3 " . escapeshellarg($tempThumbPath);
+              $ffmpegCommand2 = "ffmpeg -i " . escapeshellarg($uploadFilePath) . " -vf 'select=eq(n\\,0),scale=-1:" . $thumbnailResolution . "' -q:v 3 " . escapeshellarg($tempThumbPath);
 
               exec($ffmpegCommand2 . " 2>&1", $output2, $returnVar2);
 

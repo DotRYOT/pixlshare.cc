@@ -893,6 +893,114 @@ body {
   }
 }
 
+#postSuspended {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-content: stretch;
+  align-content: stretch;
+  -webkit-align-items: center;
+  align-items: center;
+
+  position: fixed;
+  align-self: center;
+  padding: 1rem;
+  border-bottom: .1rem solid var(--accent-color);
+  color: var(--text-color);
+  width: 100%;
+  height: 100%;
+
+  z-index: 998;
+
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(10px);
+
+  .postSuspendedContainer {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-content: stretch;
+    align-content: stretch;
+    -webkit-align-items: flex-start;
+    align-items: flex-start;
+
+    background-color: var(--primary-bg);
+    border: .1rem solid var(--accent-color);
+    border-radius: .5rem;
+    padding: 1rem;
+
+    gap: 1rem;
+
+    .closeSuspended {
+      float: right;
+
+      button {
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: column;
+        flex-direction: column;
+        -webkit-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-align-content: stretch;
+        align-content: stretch;
+        -webkit-align-items: center;
+        align-items: center;
+
+        width: 3rem;
+        height: 3rem;
+        border: .1rem solid var(--accent-color);
+        border-radius: .25rem;
+        background-color: var(--primary-bg);
+
+        cursor: pointer;
+
+        ion-icon {
+          font-size: 2rem;
+        }
+      }
+    }
+
+    .postSuspendedContent {
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-direction: column;
+      flex-direction: column;
+      -webkit-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-align-content: stretch;
+      align-content: stretch;
+      -webkit-align-items: flex-start;
+      align-items: flex-start;
+
+      gap: 1rem;
+
+      a {
+        border: .1rem solid var(--accent-color);
+        border-radius: .25rem;
+        padding: 1rem;
+
+        text-decoration: none;
+        color: var(--text-color);
+      }
+    }
+  }
+}
+
+
 .hidden {
   display: none !important;
 }

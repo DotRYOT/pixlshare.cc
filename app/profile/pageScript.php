@@ -1,10 +1,11 @@
 <?php
 session_start();
 
+require "../backend/connect/MainConnect.php";
 require "../backend/_include.php";
 require "../backend/_auth.php";
-require "../backend/connect/MainConnect.php";
 
+checkSuspendedUser($conn_main, $_SESSION['user']['UUID']);
 displayError();
 
 if (isset($_GET['p'])) {

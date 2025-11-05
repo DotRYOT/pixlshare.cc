@@ -6,18 +6,33 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sign up - PIXLSHARE</title>
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js  " async defer></script>
   <link rel="shortcut icon" href="<?= filePath("/assets/logos/"); ?>pixlshareLogo_color_128.png" type="image/x-icon">
   <link rel="manifest" href="../../manifest.json">
   <link rel="stylesheet" href="./css/index.min.css">
+  <style>
+    .dob-input-container {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .dob-select {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+  </style>
 </head>
 
 <body>
   <?php
   displayError();
   ?>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script type="module" src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/lineWobble.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js  "></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/lineWobble.js  "></script>
   <!-- %@@@@@@@@@@@@@@@@%@@@@%@%@@@@@@@@@@@@@@@@@@@@%@@@@@@ -->
   <!-- @@@@@@@@@@@%@%%@@@@@@@@@@@@@@@@@@@%@%@@@@@@@@@@@@@@@ -->
   <!-- @@@@@@@@#::::::::::::-+#%%@%%::::::::::::::::::+%@@% -->
@@ -27,7 +42,7 @@
   <!-- @@@@@#:      *%%%=      -#%%%%%*.     .*%%%%%%%@@@@@ -->
   <!-- @@@@%=       ===-       #%@@@@%=      =%@@@@@%@@@@@@ -->
   <!-- @@@@%-                 +%@@%@%#:      *%@@%@@@@@@%@@ -->
-  <!-- @@@%*.               :#%@@@@@%*      :#@@@@@@@@@%@@@ -->
+  <!-- @@@@@*               :#%@@@@@%*      :#@@@@@@@@@%@@@ -->
   <!-- @@@%*-              :+%%%@%@@%#=      -%%@@@@@@@@@@@ -->
   <!-- @@@@%=      .%#:      *%@%@@%@%=      =%@@@@@@@@@@@@ -->
   <!-- @%%@%-      =@%=      =%@@@@@@#:      *%@@%@@@@@@@@@ -->
@@ -50,6 +65,7 @@
           <path
             d="M480.67-120v-66.67h292.66v-586.66H480.67V-840H840v720H480.67Zm-63.34-176.67-47-48 102-102H120v-66.66h351l-102-102 47-48 184 184-182.67 182.66Z" />
         </svg>
+        <p>Sign up</p>
       </button>
     </div>
     <div class="navButton">
@@ -66,6 +82,7 @@
           <path
             d="M80-160v-100q0-33.67 17-62.33Q114-351 146.67-366q65-30 126.33-45.33 61.33-15.34 127-15.34 29.33 0 60.5 3.34Q491.67-420 523.33-412l-56 56q-17-2-33.5-3T400-360q-62.33 0-112.83 12.67-50.5 12.66-112.5 41.33-14.34 7-21.17 20-6.83 13-6.83 26v33.33h296L509.33-160H80Zm544 16L484-284l46.67-46.67L624-237.33l209.33-209.34L880-400 624-144ZM400-481.33q-66 0-109.67-43.67-43.66-43.67-43.66-109.67t43.66-109.66Q334-788 400-788t109.67 43.67q43.66 43.66 43.66 109.66T509.67-525Q466-481.33 400-481.33Zm42.67 254.66ZM400-548q37 0 61.83-24.83 24.84-24.84 24.84-61.84t-24.84-61.83Q437-721.33 400-721.33t-61.83 24.83q-24.84 24.83-24.84 61.83t24.84 61.84Q363-548 400-548Zm0-86.67Z" />
         </svg>
+        <p>Sign in</p>
       </button>
     </div>
   </nav>
@@ -76,16 +93,25 @@
       <input type="password" name="password" id="password" placeholder="Password" required />
       <input type="password" name="repassword" id="repassword" placeholder="Re-Password" required />
       <div id="passwordMatchError" class="password-match-error">Passwords do not match</div>
-      <!-- Date of Birth Input -->
+
       <div class="date-input-container">
         <label for="dob" class="date-label">Date of Birth</label>
-        <div class="date-wrapper">
-          <input type="date" id="dob" name="dob" class="date-input" required aria-describedby="dob-error">
+        <div class="dob-input-container">
+          <select id="day" name="dob_day" class="dob-select" required>
+            <option value="">Day</option>
+          </select>
+          <select id="month" name="dob_month" class="dob-select" required>
+            <option value="">Month</option>
+          </select>
+          <select id="year" name="dob_year" class="dob-select" required>
+            <option value="">Year</option>
+          </select>
         </div>
         <small id="dob-error" class="date-error-message" aria-live="polite"></small>
         <p class="date-hint" title="We require users to be at least 18 years old">Must be 18+ ⓘ</p>
       </div>
-      <!-- <p id="capsWarning" class="caps-warning">Caps Lock is ON!</p> -->
+      <input type="hidden" name="dob" id="dob-hidden" />
+
       <div class="feedbackAndAuth">
         <div id="passwordStrength" class="password-strength">Password
           strength: </div>
@@ -99,44 +125,118 @@
 
   <!-- Validation Scripts -->
   <script>
-    // Date Validation
     document.addEventListener("DOMContentLoaded", function () {
-      const dateInput = document.getElementById("dob");
+      const daySelect = document.getElementById("day");
+      const monthSelect = document.getElementById("month");
+      const yearSelect = document.getElementById("year");
       const errorElement = document.getElementById("dob-error");
+      const dobHidden = document.getElementById("dob-hidden");
 
-      if (!dateInput || !errorElement) {
-        console.warn("DOB elements not found in DOM.");
-        return;
+      // Populate days (1-31)
+      for (let i = 1; i <= 31; i++) {
+        const option = document.createElement("option");
+        option.value = i.toString().padStart(2, '0');
+        option.textContent = i;
+        daySelect.appendChild(option);
       }
 
-      const today = new Date();
-      const minDate = new Date();
-      minDate.setFullYear(today.getFullYear() - 120);
+      // Populate months
+      const months = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+      ];
+      months.forEach((month, index) => {
+        const option = document.createElement("option");
+        option.value = (index + 1).toString().padStart(2, '0');
+        option.textContent = month;
+        monthSelect.appendChild(option);
+      });
 
-      const maxDate = new Date();
-      maxDate.setFullYear(today.getFullYear() - 18);
+      // Populate years (from 120 years ago to 18 years ago)
+      const currentYear = new Date().getFullYear();
+      const startYear = currentYear - 120;
+      const endYear = currentYear - 18;
+      for (let year = endYear; year >= startYear; year--) {
+        const option = document.createElement("option");
+        option.value = year;
+        option.textContent = year;
+        yearSelect.appendChild(option);
+      }
 
-      dateInput.min = minDate.toISOString().split("T")[0];
-      dateInput.max = maxDate.toISOString().split("T")[0];
+      // Update hidden date input and validate
+      function updateHiddenDate() {
+        const day = daySelect.value;
+        const month = monthSelect.value;
+        const year = yearSelect.value;
 
-      dateInput.addEventListener("input", () => {
-        const selectedDate = new Date(dateInput.value);
-        let errorMessage = "";
+        if (day && month && year) {
+          // Format as YYYY-MM-DD for backend processing
+          dobHidden.value = `${year}-${month}-${day}`;
+          validateDOB();
+        } else {
+          dobHidden.value = "";
+          errorElement.textContent = "Please select your date of birth";
+        }
+      }
 
-        if (!dateInput.value) {
-          errorMessage = "Please select your date of birth";
-        } else if (selectedDate > maxDate) {
-          errorMessage = "You must be at least 18 years old";
-        } else if (selectedDate < minDate) {
-          errorMessage = "Please enter a realistic birth date";
+      // Validate date of birth
+      function validateDOB() {
+        const day = parseInt(daySelect.value);
+        const month = parseInt(monthSelect.value);
+        const year = parseInt(yearSelect.value);
+
+        if (!day || !month || !year) {
+          errorElement.textContent = "Please select your date of birth";
+          return false;
         }
 
-        errorElement.textContent = errorMessage;
-        dateInput.setCustomValidity(errorMessage);
+        // Create date object (month is 0-indexed in JS Date)
+        const selectedDate = new Date(year, month - 1, day);
+        const today = new Date();
+        const minDate = new Date();
+        minDate.setFullYear(today.getFullYear() - 120);
+
+        // Check if the date is valid (e.g., not Feb 30th)
+        if (selectedDate.getDate() !== day ||
+          selectedDate.getMonth() !== month - 1 ||
+          selectedDate.getFullYear() !== year) {
+          errorElement.textContent = "Please enter a valid date";
+          return false;
+        }
+
+        // Check if user is at least 18
+        const eighteenYearsAgo = new Date();
+        eighteenYearsAgo.setFullYear(today.getFullYear() - 18);
+        if (selectedDate > eighteenYearsAgo) {
+          errorElement.textContent = "You must be at least 18 years old";
+          return false;
+        }
+
+        // Check if date is not too old (120 years)
+        if (selectedDate < minDate) {
+          errorElement.textContent = "Please enter a realistic birth date";
+          return false;
+        }
+
+        // All validations passed
+        errorElement.textContent = "";
+        return true;
+      }
+
+      // Add event listeners
+      daySelect.addEventListener("change", updateHiddenDate);
+      monthSelect.addEventListener("change", updateHiddenDate);
+      yearSelect.addEventListener("change", updateHiddenDate);
+
+      // Form submission validation
+      document.getElementById("signupForm").addEventListener("submit", function (e) {
+        if (!validateDOB()) {
+          e.preventDefault(); // Prevent form submission if validation fails
+        }
       });
     });
 
-    // Password & Caps Lock Validation
+    // Password & Caps Lock Validation (unchanged)
     const passwordInput = document.getElementById('password');
     const capsWarning = document.getElementById('capsWarning');
 
@@ -200,10 +300,6 @@
       }
     });
   </script>
-
-  <!-- Ionicons -->
-  <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" crossorigin></script>
 </body>
 
 </html>

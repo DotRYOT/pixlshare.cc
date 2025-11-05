@@ -804,8 +804,6 @@ require "../../../../../backend/Files/repoPages/userPostPage/pageScript.php";
     };
   </script>
   <script src="../../../../../backend/videoPlayer.js"></script>
-  <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" crossorigin></script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const hash = window.location.hash;

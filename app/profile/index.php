@@ -185,8 +185,6 @@
   <script src="./scripts/_userBookmarksLoader.js"></script>
   <div id="loadingSpinner" class="spinner hidden">Loading...</div>
   <?php require "../backend/_footer.php"; ?>
-  <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" crossorigin></script>
 </body>
 
 </html>

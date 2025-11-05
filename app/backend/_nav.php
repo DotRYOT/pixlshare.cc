@@ -163,7 +163,7 @@
         </script>
 
         <div class="middlePostContainer">
-          <textarea name="postBody" id="postBody" placeholder="Text..." required maxlength="500"></textarea>
+          <textarea name="postBody" id="postBody" placeholder="Text..." maxlength="500"></textarea>
           <p id="charCount">800 characters remaining</p>
           <p id="lineBreakCount">15 line breaks remaining</p>
           <img id="image-preview" src="#" alt="Image Preview" style="display: none;">
@@ -269,7 +269,7 @@
                 <p class="fakeURL" id="fakeURL">q5elqE21EHk</p>
               </button>
             </div>
-            <button type="submit" id="postQueryButton" onclick="showLoaderAndHideForm()">
+            <button type="submit" id="postQueryButton" onsubmit="showLoaderAndHideForm()">
               <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px"
                 fill="#FFFFFF">
                 <path

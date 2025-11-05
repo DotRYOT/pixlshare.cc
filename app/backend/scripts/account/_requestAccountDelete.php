@@ -27,6 +27,14 @@ $stmt = mysqli_prepare($conn_main, $sql);
 mysqli_stmt_bind_param($stmt, "sss", $UUID, $Context, $Time);
 mysqli_stmt_execute($stmt);
 mysqli_stmt_close($stmt);
+
+$userState = 500;
+
+$sql = "UPDATE users SET userState = ? WHERE UUID = ?";
+$stmt = mysqli_prepare($conn_main, $sql);
+mysqli_stmt_bind_param($stmt, "ss", $userState, $UUID);
+mysqli_stmt_execute($stmt);
+mysqli_stmt_close($stmt);
 mysqli_close($conn_main);
 
 echo "successfully";

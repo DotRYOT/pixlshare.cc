@@ -140,6 +140,22 @@
     </div>
   </section>
 
+  <div class="accountExport" id="accountExport" style="display: none;">
+    <div class="accountExportContainer">
+      <h1>Attention!</h1>
+      <p>Your posts/data will be exported and e-mailed a link to you from the PixlShare official email. Don't forget to
+        download
+        it before it expires in 30 days.</p>
+      <h3>Your account will also be disabled to start the process.</h3>
+      <h4>Thank you for using PixlShare (:</h4>
+      <h3>Are you sure you want to delete your account?</h3>
+      <div class="accountExportFinish">
+        <button name="finishDelete" class="finishWarning">Confirm!</button>
+        <button name="finishCancel">Cancel!</button>
+      </div>
+    </div>
+  </div>
+
   <section id="passwordChangeForm" style="display: none;">
     <button type="button" class="close" onclick="togglePasswordChangeForm()">
       <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF">
@@ -186,21 +202,30 @@
       }
     }
     document.querySelector('button[name="requestAccountDelete"]').addEventListener('click', function () {
-      if (confirm('Are you sure you want to delete this account?')) {
-        fetch(`../../backend/scripts/account/_requestAccountDelete.php`, {
-          method: 'POST'
-        })
-          .then(response => response.text())
-          .then(data => {
-            console.log('Delete response:', data);
-            if (data.includes('success')) {
-              alert('Request sent successfully');
-              window.location.href = '<?= filePath("/profile/"); ?>';
-            } else {
-              alert('Error sending request: ' + data);
-            }
+      const accountExport = document.getElementById('accountExport');
+      accountExport.style.display = 'flex';
+      if (document.querySelector('button[name="finishCancel"]')) {
+        document.querySelector('button[name="finishCancel"]').addEventListener('click', function () {
+          accountExport.style.display = 'none';
+        });
+      }
+      if (document.querySelector('button[name="finishDelete"]')) {
+        document.querySelector('button[name="finishDelete"]').addEventListener('click', function () {
+          fetch(`../../backend/scripts/account/_requestAccountDelete.php`, {
+            method: 'POST'
           })
-          .catch(error => console.error('Error deleting post:', error));
+            .then(response => response.text())
+            .then(data => {
+              console.log('Delete response:', data);
+              if (data.includes('success')) {
+                alert('Request sent successfully');
+                window.location.href = '<?= filePath("/profile/"); ?>';
+              } else {
+                alert('Error sending request: ' + data);
+              }
+            })
+            .catch(error => console.error('Error deleting post:', error));
+        });
       }
     });
 
@@ -244,8 +269,6 @@
       }
     }
   </script>
-  <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" crossorigin></script>
 </body>
 
 </html>

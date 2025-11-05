@@ -50,13 +50,38 @@ if ($_SERVER['HTTP_HOST'] == 'pixlshare.cc') {
   }
 }
 
-// Validate post content
-if (empty($postBody)) {
-  $Error = generateErrorUrl("Bad Data!");
+// Check to see if the user is suspended
+
+$sql = "SELECT userState FROM users WHERE UUID = ?";
+$stmt = mysqli_prepare($conn_main, $sql);
+mysqli_stmt_bind_param($stmt, "s", $UUID);
+mysqli_stmt_execute($stmt);
+mysqli_stmt_bind_result($stmt, $userState);
+mysqli_stmt_fetch($stmt);
+mysqli_stmt_close($stmt);
+if ($userState == 500) {
+  $Error = generateErrorUrl("Account suspended. Cannot create posts.");
   echo $Error;
   // exit;
-  redirectTo("/account/signin/$Error");
+  redirectTo("/home/$Error");
 }
+
+// Validate post content
+// if (empty($postBody)) {
+//   $Error = generateErrorUrl("Bad Data!");
+//   echo $Error;
+//   // exit;
+//   redirectTo("/account/signin/$Error");
+// }
+
+// Validate atleast one of post body or media is present
+if (empty($postBody) && empty($_FILES['images']['name'])) {
+  $Error = generateErrorUrl("Post cannot be empty!");
+  echo $Error;
+  // exit;
+  redirectTo("/home/$Error");
+}
+
 if (strlen($postBody) > 800) {
   $Error = generateErrorUrl("Post exceeds 500 characters!");
   echo $Error;

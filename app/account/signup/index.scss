@@ -36,7 +36,9 @@ body {
     input[type="text"],
     [type="email"],
     [type="password"],
-    [type="submit"] {
+    [type="submit"],
+    select {
+      // Added select to match dropdown styles
       background-color: var(--primary-bg);
       color: var(--text-color);
       border-top: 0.1rem solid var(--border-color);
@@ -75,42 +77,25 @@ body {
         margin: 0.25rem 0;
       }
 
-      .date-wrapper {
+      .dob-input-container {
+        // Added styles for the new container
         display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-        border-top: 0.1rem solid var(--border-color);
-        border-bottom: 0.1rem solid var(--border-color);
-        padding: 0.75rem 1rem;
-        background-color: var(--primary-bg);
-        color: var(--text-color);
+        gap: 10px;
         width: 100%;
+        margin-top: 10px;
 
-        // Hide default browser date pickers
-        input[type="date"] {
-          &::-webkit-calendar-picker-indicator {
-            display: none;
-          }
-
-          &::-moz-calendar-picker-indicator {
-            display: none;
-          }
-
-          &::-ms-clear,
-          &::-ms-expand {
-            display: none;
-          }
-        }
-
-        input {
+        .dob-select {
+          // Added styles for the dropdowns
+          flex: 1;
+          padding: 0.75rem 1rem;
+          border-top: 0.1rem solid var(--border-color);
+          border-bottom: 0.1rem solid var(--border-color);
           background-color: var(--primary-bg);
           color: var(--text-color);
           font-size: 1rem;
-
-          &::placeholder {
-            color: var(--text-color);
-          }
+          border-radius: 0; // Match other inputs
+          border-left: 0.1rem solid var(--border-color);
+          border-right: 0.1rem solid var(--border-color);
 
           &:focus {
             border-color: var(--accent-color);
@@ -122,7 +107,7 @@ body {
           flex-direction: column;
           align-items: stretch;
 
-          input {
+          .dob-select {
             width: 100%;
             margin-bottom: 0.5rem;
           }

@@ -62,8 +62,6 @@
       <input type="submit" value="Send Request" />
     </form>
   </div>
-  <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" crossorigin></script>
 </body>
 
 </html>

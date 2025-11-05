@@ -17,15 +17,17 @@ $bg_image_link = "assets/logos/pxl_logo_1350_white.png";
 $profile_bio = "";
 $userLevel = 0;
 $userState = 0;
-$ageCheck = mysqli_real_escape_string($conn_main, $_POST['age']);
 $bookMark = "[]";
 $token = bin2hex(random_bytes(32));
 $hashedToken = password_hash($token, PASSWORD_BCRYPT);
+$day = filter_user_input($_POST['dob_day'], 'string');
+$month = filter_user_input($_POST['dob_month'], 'string');
+$year = filter_user_input($_POST['dob_year'], 'string');
 
 // Cloudflare Turnstile verification
 if ($_SERVER['HTTP_HOST'] == 'pixlshare.cc') {
   require "../../connect/_cloudFlareAPI.php";
-  $secretKey = $CloudFlairAPI;
+  $secretKey = $CloudFlareAPI;
   $CFTurnstileResponse = $_POST['cf-turnstile-response'];
   $curl = curl_init();
   curl_setopt_array($curl, [
@@ -48,6 +50,34 @@ if ($_SERVER['HTTP_HOST'] == 'pixlshare.cc') {
   if (empty($responseData['success'])) {
     exit("Turnstile verification failed: " . json_encode($responseData['error-codes']));
   }
+}
+
+// Validate that all parts are provided
+if (empty($day) || empty($month) || empty($year)) {
+  handleSignupError("Date of birth is required");
+}
+
+// Validate numeric values
+if (!is_numeric($day) || !is_numeric($month) || !is_numeric($year)) {
+  handleSignupError("Invalid date format");
+}
+
+$day = (int) $day;
+$month = (int) $month;
+$year = (int) $year;
+
+// Validate date ranges
+if ($day < 1 || $day > 31 || $month < 1 || $month > 12 || $year < 1900 || $year > (int) date('Y') - 18) {
+  handleSignupError("Invalid date values");
+}
+
+// Create a date string in YYYY-MM-DD format
+$ageCheck = sprintf('%04d-%02d-%02d', $year, $month, $day);
+
+// Verify the date is valid (e.g., not Feb 30th)
+$testDate = DateTime::createFromFormat('Y-m-d', $ageCheck);
+if (!$testDate || $testDate->format('Y-m-d') !== $ageCheck) {
+  handleSignupError("Please enter a valid date");
 }
 
 $authTokenArray = array(

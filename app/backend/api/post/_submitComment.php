@@ -58,6 +58,23 @@ if ($_SERVER['HTTP_HOST'] === 'pixlshare.cc') {
   }
 }
 
+// Check to see if the user is suspended
+
+$sql = "SELECT userState FROM users WHERE UUID = ?";
+$stmt = mysqli_prepare($conn_main, $sql);
+mysqli_stmt_bind_param($stmt, "s", $UUID);
+mysqli_stmt_execute($stmt);
+mysqli_stmt_bind_result($stmt, $userState);
+mysqli_stmt_fetch($stmt);
+mysqli_stmt_close($stmt);
+if ($userState == 500) {
+  $Error = generateErrorUrl("Account suspended. Cannot create posts.");
+  echo $Error;
+  // exit;
+  redirectTo("/home/$Error");
+}
+
+
 // Validate post content
 if (empty($postBody)) {
   $Error = generateErrorUrl("Missing Text!");

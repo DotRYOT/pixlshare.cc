@@ -241,9 +241,13 @@ if ($success) {
   if (!empty($youtubeEmbed)) {
     $Imagesql = "UPDATE posts SET image_id = ? WHERE PUID = ?";
     $ImageStmt = mysqli_prepare($conn_main, $Imagesql);
-    mysqli_stmt_bind_param($ImageStmt, "ss", $youtubeEmbed, $PUID);
+
+    $thumbnailLink = "https://i.ytimg.com/vi/" . $youtubeEmbed . "/sddefault.jpg";
+
+    mysqli_stmt_bind_param($ImageStmt, "ss", $thumbnailLink, $PUID);
     mysqli_stmt_execute($ImageStmt);
     mysqli_stmt_close($ImageStmt);
+    $image_id = $thumbnailLink;
   }
 
   // Create index.json with post data
@@ -254,7 +258,8 @@ if ($success) {
     'content' => $postBody,
     'postState' => "0",
     'link' => $youtubeEmbed,
-    'image_id' => isset($image_id) ? $image_id : null,
+    // 'youtube_id' => !empty($youtubeEmbed) ? extractYouTubeId($youtubeEmbed) : null,
+    'image_id' => isset($image_id) ? $image_id : $thumbnailLink,
     'media_id' => isset($media_id) ? $media_id : null
   ];
   file_put_contents($postDir . "/index.json", json_encode($Data));

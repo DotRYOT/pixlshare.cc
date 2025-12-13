@@ -338,12 +338,32 @@
 
         const noteEl = document.createElement('div');
         noteEl.className = 'note dynamic';
-        noteEl.innerHTML = `
-        <a href="<?= filePath("") ?>${note.actionUrl}?action=like" class="note-link">
-          <p>${message}</p>
-          <img src="<?= filePath("/"); ?>${note.postPreview}" alt="Post preview">
-        </a>
-      `;
+
+        let processedImageUrl = note.postPreview;
+        if (processedImageUrl && processedImageUrl.includes("https://i.ytimg.com/vi/")
+        ) {
+          processedImageUrl = processedImageUrl.replace(/^\.\.\//, "");
+          noteEl.innerHTML = `
+          <a href="<?= filePath("") ?>${note.actionUrl}?action=like" class="note-link">
+            <p>${message}</p>
+            <img src="${processedImageUrl}" alt="Post preview">
+          </a>
+          `;
+        } else if (processedImageUrl) {
+          noteEl.innerHTML = `
+          <a href="<?= filePath("") ?>${note.actionUrl}?action=like" class="note-link">
+            <p>${message}</p>
+            <img src="<?= filePath("/"); ?>${note.postPreview}" alt="Post preview">
+          </a>
+          `;
+        }
+
+        //   noteEl.innerHTML = `
+        //       < a href = "<?= filePath("") ?>${note.actionUrl}?action=like" class="note-link" >
+        //     <p>${message}</p>
+        //     <img src="<?= filePath("/"); ?>${note.postPreview}" alt="Post preview">
+        //   </>
+        // `;
 
         win.insertBefore(noteEl, noNoteEl);
       });
@@ -354,7 +374,7 @@
       noNoteEl.style.display = 'flex';
     }
   }
-  
+
   document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('notificationWindow')) {
       loadNotificationsIntoTray();
@@ -457,13 +477,13 @@
     const searchResults = document.getElementById('searchResults');
 
     try {
-      const response = await fetch(`<?= filePath("/backend/api/"); ?>_searchQuery.php?query=${encodeURIComponent(query)}`);
+      const response = await fetch(`<?= filePath("/backend/api/"); ?>_searchQuery.php ? query = ${encodeURIComponent(query)} `);
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(`HTTP error! status: ${response.status} `);
       }
       const result = await response.json();
       if (result.error) {
-        searchResults.innerHTML = `<div class="error-message">Error: ${result.error}</div>`;
+        searchResults.innerHTML = `< div class="error-message" > Error: ${result.error}</ > `;
         searchResults.style.display = 'block';
         return;
       }
@@ -472,19 +492,19 @@
         html += '<div class="postResultsSection">';
         result.posts.forEach(post => {
           html += `
-        <button class="resultPostReturn" onclick="window.location.href='<?= filePath("/profile/u/"); ?>${post.user_uuid}/post/${post.PUID}'">
-          <div class="PostInfo">
-            <img class="postImage" src="<?= filePath(""); ?>${post.image_id}" alt="user profile picture">
-            <div class="PostInfoText">
-              <div class="userPostInfo">
-                <img src="<?= filePath("/"); ?>${post.pfp_image_link}" alt="user profile picture">
-                <p class="postUsername">${post.username}</p>
+            < button class="resultPostReturn" onclick = "window.location.href='<?= filePath("/profile/u/"); ?>${post.user_uuid}/post/${post.PUID}'" >
+              <div class="PostInfo">
+                <img class="postImage" src="<?= filePath(""); ?>${post.image_id}" alt="user profile picture">
+                  <div class="PostInfoText">
+                    <div class="userPostInfo">
+                      <img src="<?= filePath("/"); ?>${post.pfp_image_link}" alt="user profile picture">
+                        <p class="postUsername">${post.username}</p>
+                    </div>
+                    <p class="postContent">${post.content}</p>
+                  </div>
               </div>
-              <p class="postContent">${post.content}</p>
-            </div>
-          </div>
-        </button>
-        `;
+        </ >
+            `;
         });
         html += '</div>';
       }
@@ -493,7 +513,7 @@
         html += '<div class="UserResultSection">';
         result.users.forEach(user => {
           html += `
-          <button class="resultUserReturn" onclick="window.location.href='<?= filePath("/profile/u/"); ?>${user.uuid}/'">
+            < button class="resultUserReturn" onclick = "window.location.href='<?= filePath("/profile/u/"); ?>${user.uuid}/'" >
             <div class="UserInfo">
               <img class="userAvatar" src="<?= filePath("/"); ?>${user.pfp_image_link}" alt="user profile picture">
               <div class="UserInfoText">
@@ -501,7 +521,7 @@
               </div>
             </div>
             <img class="userBackground" src="<?= filePath("/"); ?>${user.bg_image_link}" alt="user background image">
-          </button>
+          </>
           `;
         });
         html += '</div>';
@@ -517,7 +537,7 @@
       searchResults.style.display = 'flex';
 
     } catch (error) {
-      searchResults.innerHTML = `<div class="error-message">Error: ${error.message}</div>`;
+      searchResults.innerHTML = `< div class="error-message" > Error: ${error.message}</ >`;
       searchResults.style.display = 'block';
     }
   });

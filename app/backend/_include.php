@@ -170,7 +170,7 @@ function filePath($url)
     $redirecturl = $protocol . "localhost/pixlshare.cc/app" . $url;
   }
 
-  if ($domain === "192.168.1.108") {
+  if ($domain === "192.168.1.170") {
     $redirecturl = $protocol . $domain . "/pixlshare.cc/app" . $url;
   }
 

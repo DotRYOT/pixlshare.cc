@@ -191,6 +191,14 @@ function createPostCard(post) {
     commentAnchor = `#comment-${post.PUID}`; // Add the comment anchor
   }
 
+  let processedImageUrl = post.image_id;
+  if ( processedImageUrl && processedImageUrl.includes("https://i.ytimg.com/vi/")
+  ) {
+    processedImageUrl = processedImageUrl.replace(/^\.\.\//, "");
+  } else if (processedImageUrl) {
+    processedImageUrl = `../${processedImageUrl}`;
+  }
+
   return `
     <div
       id="${post.PUID}"
@@ -268,7 +276,7 @@ function createPostCard(post) {
             post.postState == 0
               ? post.userState == 500
                 ? `<img data-src="../assets/sadCat03.jpg" alt="Post image" class="lazy-img">`
-                : `<img data-src="../${post.image_id}" alt="Post image" class="lazy-img">`
+                : `<img data-src="${processedImageUrl}" alt="Post image" class="lazy-img">`
               : `<img data-src="../assets/sadCat03.jpg" alt="Post image" class="lazy-img">`
           }
         </a>

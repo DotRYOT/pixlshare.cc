@@ -12,7 +12,7 @@ require "../../../../../backend/Files/repoPages/userPostPage/pageScript.php";
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <?php } ?>
   <link rel="shortcut icon" href="<?= filePath("/assets/logos/"); ?>pixlshareLogo_color_128.png" type="image/x-icon">
-  <link rel="stylesheet" href="<?= filePath("/profile/u/css/") ?>index.min.css">
+  <link rel="stylesheet" href="<?= filePath("/profile/u/css/"); ?>index.min.css">
   <?php if ($_SERVER['HTTP_HOST'] == 'pixlshare.cc') { ?>
     <link rel="manifest" href="<?= filePath("/") ?>manifest.json" />
     <script>

@@ -10,7 +10,6 @@ checkUserAuth($conn_main, "auth");
 
 $UUID = $_SESSION['user']['UUID'];
 
-// Helper function to convert images to WebP using FFmpeg
 function convertImageToWebP($sourcePath, $destinationPath, $sourceExtension)
 {
   try {
@@ -52,7 +51,6 @@ function convertImageToWebP($sourcePath, $destinationPath, $sourceExtension)
   }
 }
 
-// Fallback function using GD if FFmpeg is not available
 function convertImageToWebPFallback($sourcePath, $destinationPath, $sourceExtension)
 {
   try {
@@ -75,6 +73,30 @@ function convertImageToWebPFallback($sourcePath, $destinationPath, $sourceExtens
     if (!$sourceImage) {
       return false;
     }
+
+    // Check if the image is a palette-based image and convert it to true color
+    if (!imageistruecolor($sourceImage)) {
+      // Convert palette image to true color
+      $width = imagesx($sourceImage);
+      $height = imagesy($sourceImage);
+
+      $trueColorImage = imagecreatetruecolor($width, $height);
+
+      // Preserve transparency if needed
+      imagealphablending($trueColorImage, false);
+      imagesavealpha($trueColorImage, true);
+
+      // Copy the original image to the true color image
+      imagecopy($trueColorImage, $sourceImage, 0, 0, 0, 0, $width, $height);
+
+      // Free the old image and use the new one
+      imagedestroy($sourceImage);
+      $sourceImage = $trueColorImage;
+    }
+
+    // Ensure alpha blending is handled correctly
+    imagealphablending($sourceImage, false);
+    imagesavealpha($sourceImage, true);
 
     // Convert to WebP
     $result = imagewebp($sourceImage, $destinationPath, 85);

@@ -296,7 +296,7 @@
 </div>
 
 <script>
-  // Load notifications from your existing PHP script
+  // Load notifications
   async function loadNotificationsIntoTray() {
     const win = document.getElementById('notificationWindow');
     if (!win) return;
@@ -304,13 +304,11 @@
     const noNoteEl = win.querySelector('.noNote');
 
     try {
-      // Fetch from your existing script
       const response = await fetch('<?= filePath("/"); ?>backend/scripts/account/_loadNotifications.php');
       if (!response.ok) throw new Error('Failed to load notifications');
 
       const data = await response.json();
 
-      // Remove previous dynamic notes
       document.querySelectorAll('.note.dynamic').forEach(el => el.remove());
 
       if (!data.notifications || data.totalCount === 0) {
@@ -356,10 +354,10 @@
       noNoteEl.style.display = 'flex';
     }
   }
+  
   document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('notificationWindow')) {
       loadNotificationsIntoTray();
-      // Run every 10 seconds
       setInterval(loadNotificationsIntoTray, 10000);
     }
   });
@@ -411,6 +409,17 @@
         }
       }
     });
+  });
+
+  document.getElementById('postForm').addEventListener('submit', function (event) {
+    const youtubeLink = document.getElementById('youtubeLink').value.trim();
+    const imageUpload = document.getElementById('image-upload').files.length;
+    const textarea = document.getElementById('postBody').value.trim();
+
+    if (!youtubeLink && !imageUpload && !textarea) {
+      event.preventDefault();
+      alert('Please provide content.');
+    }
   });
 </script>
 
@@ -523,14 +532,4 @@
   }
 
   setInterval(animatePlaceholder, 300);
-
-  document.getElementById('postForm').addEventListener('submit', function (event) {
-    const youtubeLink = document.getElementById('youtubeLink').value;
-    const imageUpload = document.getElementById('image-upload').files.length;
-
-    if (!youtubeLink && !imageUpload) {
-      event.preventDefault();
-      alert('Please provide either an image or a YouTube link.');
-    }
-  });
 </script>

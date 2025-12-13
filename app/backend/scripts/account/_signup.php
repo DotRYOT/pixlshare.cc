@@ -176,19 +176,6 @@ try {
       'userLevel' => '0',
       'userState' => '0',
       'is_over_18' => $is_over_18
-    ]),
-    "$userDir/notifications.json" => json_encode([
-      'notifications' => [
-        'UUID' => '',
-        'PUID' => '',
-        'type' => '',
-        'userName' => '',
-        'postPreview' => '',
-        'timestamp' => '',
-        'read' => false,
-        'actionUrl' => ''
-      ],
-      'totalCount' => 0
     ])
   ];
 

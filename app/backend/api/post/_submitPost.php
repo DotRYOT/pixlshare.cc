@@ -78,7 +78,7 @@ if (empty($postBody) && empty($_FILES['images']['name'])) {
 }
 
 if (empty($postBody)) {
-  $postBody = "[Video/Image Post]";
+  $postBody = "";
 }
 
 if (strlen($postBody) > 800) {
@@ -230,10 +230,6 @@ if ($success) {
         echo $Error;
         redirectTo("/home/$Error");
       }
-    } else {
-      $Error = generateErrorUrl("Image upload error: " . $file['error']);
-      echo $Error;
-      redirectTo("/home/$Error");
     }
   }
 

@@ -91,9 +91,9 @@ $_SESSION['csrf_token'] = bin2hex(random_bytes(50));
         <div style="display: block; flex-flow: row;">
           <div class="cf-turnstile" data-sitekey="0x4AAAAAAA27XzOGlxRe70Bl" data-size="flexible"></div>
         </div>
-        <!-- <p>
+        <p>
           <a href="../forgot/">Forgot Password?</a>
-        </p> -->
+        </p>
       </div>
       <input type="submit" value="Sign in" />
     </form>

@@ -90,8 +90,8 @@
     <form action="../../backend/scripts/account/_signup.php" method="post" id="signupForm">
       <input type="email" name="email" id="email" placeholder="Email" required />
       <input type="text" name="UserName" id="UserName" placeholder="Username" required />
-      <input type="password" name="password" id="password" placeholder="Password" required />
-      <input type="password" name="repassword" id="repassword" placeholder="Re-Password" required />
+      <input type="password" name="password" id="password" placeholder="Password" minlength="8" required />
+      <input type="password" name="repassword" id="repassword" placeholder="Re-Password" minlength="8" required />
       <div id="passwordMatchError" class="password-match-error">Passwords do not match</div>
 
       <div class="date-input-container">

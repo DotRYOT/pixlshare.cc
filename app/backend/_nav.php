@@ -378,7 +378,7 @@
   document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('notificationWindow')) {
       loadNotificationsIntoTray();
-      setInterval(loadNotificationsIntoTray, 10000);
+      setInterval(loadNotificationsIntoTray, 60000);
     }
   });
 

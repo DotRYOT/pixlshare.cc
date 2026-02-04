@@ -71,86 +71,32 @@
     </div>
   </nav>
 
-  <div class="formContainer">
-    <form id="recoveryForm" action="../../../backend/scripts/account/_forgotPassword.php" method="post">
-      <h3>Enter your backup phrase</h3>
-      <p>Paste your 10-word backup phrase below:</p>
-
-      <div class="paste-area">
-        <textarea id="phraseInput" placeholder="Paste your backup phrase here..."></textarea>
-        <button type="button" id="splitBtn">Split into Words</button>
-      </div>
-
-      <div class="word-inputs">
-        <div class="input-row">
-          <input type="text" name="word1" id="word1" placeholder="1" maxlength="20" readonly>
-          <input type="text" name="word2" id="word2" placeholder="2" maxlength="20" readonly>
-          <input type="text" name="word3" id="word3" placeholder="3" maxlength="20" readonly>
-          <input type="text" name="word4" id="word4" placeholder="4" maxlength="20" readonly>
-          <input type="text" name="word5" id="word5" placeholder="5" maxlength="20" readonly>
-        </div>
-        <div class="input-row">
-          <input type="text" name="word6" id="word6" placeholder="6" maxlength="20" readonly>
-          <input type="text" name="word7" id="word7" placeholder="7" maxlength="20" readonly>
-          <input type="text" name="word8" id="word8" placeholder="8" maxlength="20" readonly>
-          <input type="text" name="word9" id="word9" placeholder="9" maxlength="20" readonly>
-          <input type="text" name="word10" id="word10" placeholder="10" maxlength="20" readonly>
-        </div>
-      </div>
-
-      <input type="hidden" name="emailCheck" value="<?= $userEmail; ?>" />
-
-      <input type="submit" value="Recover Account" name="recoverAccount" />
+  <div id="resetContainer">
+    <h1>Reset Your Password</h1>
+    <form id="resetForm" method="POST" action="../../../backend/scripts/account/_phrasePasswordChange.php">
+      <input type="password" name="newPassword" id="password" placeholder="New Password" required minlength="8" />
+      <input type="password" name="confirmPassword" id="repassword" placeholder="Confirm New Password" required
+        minlength="8" />
+      <div id="passwordMatchError" class="password-match-error">Passwords do not match</div>
+      <button type="submit" name="resetPasswordButton" onclick="checkPasswordMatch()">Reset Password</button>
     </form>
   </div>
-
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const phraseInput = document.getElementById('phraseInput');
-      const splitBtn = document.getElementById('splitBtn');
-      const inputs = [
-        document.getElementById('word1'),
-        document.getElementById('word2'),
-        document.getElementById('word3'),
-        document.getElementById('word4'),
-        document.getElementById('word5'),
-        document.getElementById('word6'),
-        document.getElementById('word7'),
-        document.getElementById('word8'),
-        document.getElementById('word9'),
-        document.getElementById('word10')
-      ];
+    function checkPasswordMatch() {
+      const password = document.getElementById('password').value;
+      const repassword = document.getElementById('repassword').value;
+      const passwordMatchError = document.getElementById('passwordMatchError');
 
-      // Auto-split when user pastes
-      phraseInput.addEventListener('paste', function (e) {
-        setTimeout(() => splitPhrase(), 10);
-      });
-
-      // Split button handler
-      splitBtn.addEventListener('click', splitPhrase);
-
-      function splitPhrase() {
-        const phrase = phraseInput.value.trim();
-        if (!phrase) return;
-
-        // Split by spaces and filter out empty strings
-        const words = phrase.split(/\s+/).filter(word => word.length > 0);
-
-        // Clear all inputs
-        inputs.forEach(input => input.value = '');
-
-        // Fill inputs with words (up to 10)
-        for (let i = 0; i < Math.min(words.length, 10); i++) {
-          inputs[i].value = words[i];
-        }
+      if (password !== repassword) {
+        passwordMatchError.style.display = 'block';
+        return false;
+      } else {
+        passwordMatchError.style.display = 'none';
+        return true;
       }
-
-      // Allow editing individual inputs
-      inputs.forEach(input => {
-        input.removeAttribute('readonly');
-      });
-    });
+    }
   </script>
+
 </body>
 
 </html>

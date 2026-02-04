@@ -48,6 +48,14 @@
         "text": "Cars"
     },
     {
+        "value": "1001",
+        "text": "Music"
+    },
+    {
+        "value": "1002",
+        "text": "Political"
+    },
+    {
         "value": "998",
         "text": "NSFW"
     },

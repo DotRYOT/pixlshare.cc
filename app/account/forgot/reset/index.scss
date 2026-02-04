@@ -1,0 +1,68 @@
+@import "../../../scss/globalNoAcc";
+@import "../../../scss/navNoAccount";
+
+#topNav {
+  .topNavRight {
+    h2 {
+      margin-right: 1rem;
+    }
+  }
+}
+
+#resetContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+
+  h1 {
+    margin-bottom: 1.5rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 50%;
+
+    input[type="text"],
+    [type="email"],
+    [type="password"],
+    [type="submit"],
+    select {
+      // Added select to match dropdown styles
+      background-color: var(--primary-bg);
+      color: var(--text-color);
+      border-top: 0.1rem solid var(--border-color);
+      border-bottom: 0.1rem solid var(--border-color);
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      width: 100%;
+      margin-bottom: 0.5rem;
+
+      &::placeholder {
+        color: var(--text-color);
+      }
+
+      &:focus {
+        border-color: var(--accent-color);
+        box-shadow: 0 0 0 3px rgba(255, 69, 0, 0.2);
+      }
+
+      @media (max-width: 480px) {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.9rem;
+      }
+    }
+
+    .password-match-error {
+      display: none;
+    }
+
+    input[type="submit"] {
+      cursor: pointer;
+    }
+  }
+}

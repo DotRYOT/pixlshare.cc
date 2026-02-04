@@ -132,7 +132,8 @@ $_SESSION['user'] = array(
   'token' => $userToken,
   'username' => $UserName,
   'userLevel' => $userLevel,
-  'ageCheck' => $ageCheck
+  'ageCheck' => $ageCheck,
+  'profile_setup_complete' => true
 );
 
 logLoginAttempt($UserName, 'success');

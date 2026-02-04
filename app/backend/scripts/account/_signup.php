@@ -131,11 +131,30 @@ $hashedPassword = password_hash($userPassword, PASSWORD_BCRYPT);
 // Use transaction for atomic operations
 mysqli_begin_transaction($conn_main);
 
+// Random profile backup phrase generation
+
+require "../../json/_wordList.php";
+
+function generateSecureBackupPhrase($wordList, $numWords = 10)
+{
+  $phraseWords = [];
+  $wordListCount = count($wordList);
+  for ($i = 0; $i < $numWords; $i++) {
+    $randomIndex = random_int(0, $wordListCount - 1);
+    $phraseWords[] = $wordList[$randomIndex];
+  }
+  return $phraseWords;
+}
+
+$backupPhrase = generateSecureBackupPhrase($wordList, 10);
+$backupPhrase = implode(' ', $backupPhrase);
+$backupPhrase = mysqli_real_escape_string($conn_main, $backupPhrase);
+
 try {
-  $insert_sql = "INSERT INTO users (uuid, username, user_ip, email, userAge, user_password, profile_bio, bookmark, userLevel, userState, user_token, pfp_image_link, bg_image_link) 
-               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+  $insert_sql = "INSERT INTO users (uuid, username, user_ip, email, userAge, user_password, profile_bio, bookmark, userLevel, userState, user_token, pfp_image_link, bg_image_link, user_phrase) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
   $insert_stmt = mysqli_prepare($conn_main, $insert_sql);
-  mysqli_stmt_bind_param($insert_stmt, "sssssssssssss", $UUID, $UserName, $UserIP, $email, $json_user_data, $hashedPassword, $profile_bio, $bookMark, $userLevel, $userState, $hashTokenArray, $pfp_image_link, $bg_image_link);
+  mysqli_stmt_bind_param($insert_stmt, "ssssssssssssss", $UUID, $UserName, $UserIP, $email, $json_user_data, $hashedPassword, $profile_bio, $bookMark, $userLevel, $userState, $hashTokenArray, $pfp_image_link, $bg_image_link, $backupPhrase);
 
   if (!mysqli_stmt_execute($insert_stmt)) {
     throw new Exception("Database error");
@@ -191,7 +210,8 @@ try {
     'token' => $token,
     'username' => $UserName,
     'userLevel' => $userLevel,
-    'ageCheck' => $ageCheck
+    'ageCheck' => $ageCheck,
+    'profile_setup_complete' => false
   ];
 
   setcookie('authToken', $authTokenArray, time() + 3600, '/', '', true, true);

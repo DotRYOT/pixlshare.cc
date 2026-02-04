@@ -1,7 +1,9 @@
 <?php
+
 // 
 // This is the normal post script 
 // 
+
 session_start();
 require "../../_auth.php";
 require "../../_include.php";
@@ -141,11 +143,28 @@ if ($success) {
               // Convert main image to WebP
               $webpFileName = "img_$PUID.webp";
               $webpFilePath = $uploadDir . $webpFileName;
-              $ffmpegImageCommand = "ffmpeg -i " . escapeshellarg($uploadFilePath) . " -q:v 85 " . escapeshellarg($webpFilePath);
-              exec($ffmpegImageCommand, $output, $returnVar);
-              if ($returnVar === 0) {
+              $returnVar = 1;
+              $output = [];
+
+              if ($fileExtension === 'gif') {
+                // Prefer gif2webp (libwebp) which supports explicit loop control
+                $gif2webpCmd = "gif2webp -loop 0 " . escapeshellarg($uploadFilePath) . " -q 80 -o " . escapeshellarg($webpFilePath) . " 2>&1";
+                exec($gif2webpCmd, $output, $returnVar);
+
+                if ($returnVar !== 0) {
+                  // Fallback to ffmpeg using libwebp and set loop=0 for animation
+                  $ffmpegGifCmd = "ffmpeg -i " . escapeshellarg($uploadFilePath) . " -c:v libwebp -loop 0 -q:v 80 " . escapeshellarg($webpFilePath) . " 2>&1";
+                  exec($ffmpegGifCmd, $output, $returnVar);
+                }
+              } else {
+                // Static images (jpg/png) - convert to single-frame WebP
+                $ffmpegImageCommand = "ffmpeg -i " . escapeshellarg($uploadFilePath) . " -q:v 85 " . escapeshellarg($webpFilePath) . " 2>&1";
+                exec($ffmpegImageCommand, $output, $returnVar);
+              }
+
+              if ($returnVar === 0 && file_exists($webpFilePath)) {
                 // Conversion successful
-                unlink($uploadFilePath); // Remove original file
+                @unlink($uploadFilePath); // Remove original file when possible
                 $media_id = "/profile/u/{$UUID}/post/{$PUID}/" . $webpFileName;
                 $image_id = $media_id; // For images, both are the same
               } else {

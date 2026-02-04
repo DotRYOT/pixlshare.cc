@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 require "../_auth.php";
 require "../_include.php";
 require "../connect/MainConnect.php";
